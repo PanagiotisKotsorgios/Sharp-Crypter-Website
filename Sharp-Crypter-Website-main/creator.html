@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SharpCrypter Official | Panagiotis Kotsorgios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 20px;
+    unicode-bidi: isolate;
+}
+
+ul.footer-contact {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 0px;
+    unicode-bidi: isolate;
+}
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>#SharpCrypter</h2>
+            <ul>
+                <li><a href="index.html" >Overview</a></li>
+                <li><a href="index.html #features">Features</a></li>
+                <li><a href="index.html #demo">Demo & Code</a></li>
+                <li><a href="index.html #download">Download</a></li>
+                <li><a href="index.html #faq">FAQ</a></li>
+                <li><a href="creator.html" class="active">Developer</a></li>
+                <li><a href="index2.html">Documentation</a></li>
+                <li><a href="encryptor-online.html">Online Encryptor</a></li>
+                <li><a href="community.html">Community</a></li>
+              </ul>
+        </nav>
+
+        <main class="main-content">
+            <!-- Developer Profile Section -->
+            <section id="developer">
+                <div class="method-details">
+                    <div class="profile-header">
+                        <div class="profile-image">
+                            <img src="ddd-min.png" alt="Developer Profile" class="profile-img">
+                        </div>
+                        <div class="profile-info">
+                            <h2>Panagiotis Kotsorgios</h2>
+                            <span class="role" aria-label="profession">Dedicated Full-Stack Software Engineer</span>
+
+                            <div class="social-links">
+                                <td>
+                                    <a href="https://github.com/PanagiotisKotsorgios" target="_blank" class="social-icon">
+                                      <i class="fab fa-github" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/panagiotis-kotsorgios-019ab9303/" target="_blank" class="social-icon">
+                                      <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="https://www.hackerrank.com/profile/pkotsorgios654" target="_blank" class="social-icon">
+                                      <i class="fab fa-hackerrank" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="https://leetcode.com/u/Panagiotis_Kotsorgios/" target="_blank" class="social-icon">
+                                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                                    </a>
+                                  
+                                    <!-- New: Email -->
+                                    <a href="mailto:pkotsorgios654@gmail.com" class="social-icon">
+                                      <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                  
+                                    <!-- New: Instagram -->
+                                    <a href="https://instagram.com/panagiotis_ko_?igsh=OTJ4Zmc4djUwMnFo" target="_blank" class="social-icon">
+                                      <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    </a>
+
+                                    </td>
+                                  
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bio-section">
+                        <h3>About the Developer</h3>
+                        <p>
+                            Hey there! 👋 I've been <span style="color:gold;">messing with code</span> for about 
+                            <span style="color:gold;">five years</span> now, mostly doing that 
+                            <span style="color:gold;">C/C++ grind</span> that makes my weekends disappear. 
+                            You'll usually find me <span style="color:gold;">elbow-deep in microcontroller projects</span> – 
+                            whether it's making <span style="color:gold;">Arduino boards</span> do dumb tricks or 
+                            trying not to fry <span style="color:gold;">Raspberry Pis</span> with my janky wiring. 
+                            <br><br>
+                        
+                            I <span style="color:gold;">live for that embedded life</span> – 
+                            there's something magical about seeing code make <span style="color:gold;">blinky lights ✨</span> 
+                            actually blink. My desk looks like a <span style="color:gold;">robot warzone</span> with 
+                            half-built drones and <span style="color:gold;">sensor arrays</span> everywhere. 
+                            <span style="color:gold;">Linux</span> is my ride-or-die OS, and I'll 
+                            <span style="color:gold;">argue about vim vs emacs</span> until 3AM if you let me. 😂
+                            <br><br>
+                        
+                            When I'm not <span style="color:gold;">burning firmware</span> or 
+                            <span style="color:gold;">debugging memory leaks</span>, I'm probably 
+                            <span style="color:gold;">taking apart gadgets 🛠️</span> to see how they work 
+                            (not always successfully putting them back together). 
+                            <span style="color:gold;">Making stuff efficient</span> is my jam – 
+                            why use 10 lines when 3 will do the job, right? 🤔
+                        </p>
+                          
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Form Section -->
+            <section id="contact">
+                <div class="method-details">
+                    <h2>Contact Form</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   placeholder="ex. John Doe" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="ex. john_doe@gmail.com" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required 
+                                   placeholder="Regarding encryption features" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                      placeholder="Type your message here..." class="form-input"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+      
+
+            <style>
+                /* Modern Dark Modal */
+                .professional-modal {
+                    display: none;
+                    position: fixed;
+                    inset: 0;
+                    background: rgba(0, 0, 0, 0.8);
+                    backdrop-filter: blur(10px);
+                    z-index: 10000;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                }
+                
+                .professional-modal.show {
+                    display: flex;
+                    opacity: 1;
+                }
+                
+                .modal-container {
+                    background: rgba(15, 23, 42, 0.95);
+                    border-radius: 1.5rem;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+                    max-width: 500px;
+                    width: 90%;
+                    transform: translateY(20px);
+                    opacity: 0;
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    backdrop-filter: blur(16px);
+                }
+                
+                .professional-modal.show .modal-container {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+                
+                .modal-header {
+                    display: flex;
+                    align-items: center;
+                    padding: 1.5rem;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    position: relative;
+                }
+                
+                .modal-icon {
+                    width: 44px;
+                    height: 44px;
+                    background: rgba(129, 140, 248, 0.1);
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 1rem;
+                }
+                
+                .modal-icon svg {
+                    width: 24px;
+                    height: 24px;
+                    color: #818cf8;
+                }
+                
+                .modal-title {
+                    margin: 0;
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: #f8fafc;
+                }
+                
+                .modal-close {
+                    position: absolute;
+                    top: 1.25rem;
+                    right: 1.25rem;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: none;
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #94a3b8;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+                
+                .modal-close:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                    color: #f8fafc;
+                }
+                
+                .modal-content {
+                    padding: 1.5rem;
+                }
+                
+                .modal-text {
+                    color: #94a3b8;
+                    line-height: 1.6;
+                    margin: 0 0 1.5rem 0;
+                    font-size: 0.95rem;
+                }
+                
+                .modal-alert {
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 12px;
+                    padding: 1.25rem;
+                    text-align: center;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                }
+                
+                .modal-alert-text {
+                    color: #f8fafc;
+                    margin: 0 0 0.5rem 0;
+                    font-size: 0.9rem;
+                }
+                
+                .modal-email {
+                    color: #818cf8;
+                    text-decoration: none;
+                    font-weight: 500;
+                    font-size: 0.95rem;
+                    transition: all 0.2s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+                
+                .modal-email:hover {
+                    color: #6366f1;
+                    text-decoration: underline;
+                }
+                
+                @media (max-width: 480px) {
+                    .modal-container {
+                        border-radius: 1rem;
+                        width: 95%;
+                    }
+                    
+                    .modal-header {
+                        padding: 1rem;
+                    }
+                    
+                    .modal-content {
+                        padding: 1rem;
+                    }
+                    
+                    .modal-icon {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+                </style>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const modal = {
+                            element: document.getElementById('proModal'),
+                            open() {
+                                this.element.classList.add('show');
+                                document.body.style.overflow = 'hidden';
+                                document.body.style.paddingRight = '15px';
+                            },
+                            close() {
+                                this.element.classList.remove('show');
+                                document.body.style.overflow = 'auto';
+                                document.body.style.paddingRight = '0';
+                            }
+                        };
+                    
+                        // Fixed close button handler
+                        const closeBtn = document.querySelector('.modal-close');
+                        if(closeBtn) {
+                            closeBtn.addEventListener('click', () => { // Changed to arrow function
+                                modal.close();
+                            });
+                        }
+                    
+                        // Rest of the code remains the same
+                        const submitBtn = document.querySelector('.submit-btn');
+                        if(submitBtn) {
+                            submitBtn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                modal.open();
+                            });
+                        }
+                    
+                        const modalOverlay = document.querySelector('.professional-modal');
+                        if(modalOverlay) {
+                            modalOverlay.addEventListener('click', (e) => {
+                                if(e.target === e.currentTarget) modal.close();
+                            });
+                        }
+                    
+                        document.addEventListener('keydown', (e) => {
+                            if(e.key === 'Escape' && modal.element.classList.contains('show')) {
+                                modal.close();
+                            }
+                        });
+                    });
+                    </script>
+            <!-- Additional Information -->
+            <section id="support">
+                <div class="method-details">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3><i class="fas fa-headset"></i> Support</h3>
+                            <p>Best Support: <a href="mailto:pkotsorgios654@gmail.com">pkotsorgios654@gmail.com</a></p>
+                            <p>Response Time: 24-48 business hours</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3><i class="fas fa-building"></i> Office Hours</h3>
+                            <p>Mon-Fri: 9:00 AM - 5:00 PM CET</p>
+                            <p>Emergency Support: 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="gold-cta">
+                <div class="quote-card">
+                    <blockquote class="gradient-quote">"Programming is 10% coding, 20% debugging, and 70% wondering why it worked"</blockquote>
+                    <button class="gold-btn" onclick="showWisdom()">
+                        <span class="btn-content">🚀 Reveal Dev Truths <span class="sparkle">✨</span></span>
+                    </button>
+                </div>
+            </section>
+            
+            <div id="goldPopup" class="popup-container">
+                <div class="popup-body">
+                    <div class="popup-header">
+                        <button class="close-btn" onclick="hidePopup()">×</button>
+                    </div>
+                    <div class="popup-content">
+                        <p id="popupMessage" class="glowing-text"></p>
+                    </div>
+                </div>
+            </div>
+            
+         
+            <style>
+            :root {
+                --gold1: #FFD700;
+                --gold2: #FFAA00;
+                --gold3: #DA9100;
+                --bg-gradient: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+                --text-gradient: linear-gradient(45deg, var(--gold3), var(--gold1));
+                --popup-bg: linear-gradient(145deg, #333333, #1a1a1a);
+                --border-color: #555555;
+            }
+            
+            /* CTA Section */
+            .gold-cta {
+                padding: 2rem;
+                background: var(--bg-gradient);
+                border-radius: 20px;
+                margin: 2rem auto;
+                max-width: 800px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+            
+            .gradient-quote {
+                font-size: 1.5rem;
+                background: var(--text-gradient);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                margin: 0;
+                padding: 1rem;
+                animation: float 3s ease-in-out infinite;
+                text-align: center;
+            }
+            
+            /* Gold Button */
+            .gold-btn {
+                background: var(--text-gradient);
+                border: 1px solid var(--gold2);
+                padding: 1rem 2.5rem;
+                border-radius: 50px;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                margin-top: 1.5rem;
+            }
+            
+            .gold-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+            }
+            
+            .gold-btn::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(45deg, 
+                    transparent 25%,
+                    rgba(255,255,255,0.1) 50%,
+                    transparent 75%);
+                animation: shine 2s infinite;
+            }
+            
+            /* Modern Popup */
+            .popup-container {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1000;
+                pointer-events: none;
+            }
+            
+            .popup-body {
+                background: var(--popup-bg);
+                border-radius: 20px;
+                padding: 2rem;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+                border: 2px solid var(--border-color);
+                transform: scale(0.8);
+                transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                pointer-events: all;
+            }
+            
+            .popup-body.active {
+                transform: scale(1);
+            }
+            
+            .close-btn {
+                position: absolute;
+                right: -15px;
+                top: -15px;
+                background: var(--gold1);
+                border: 2px solid white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .close-btn:hover {
+                background: var(--gold3);
+                transform: rotate(90deg);
+            }
+            
+            .glowing-text {
+                background: var(--text-gradient);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                font-size: 1.2rem;
+                text-align: center;
+            }
+            
+            /* Animations */
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            @keyframes shine {
+                to {
+                    transform: translateX(100%) rotate(15deg);
+                }
+            }
+            
+            .sparkle {
+                animation: sparkle 1.5s infinite;
+            }
+            
+            @keyframes sparkle {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.3; transform: scale(1.2); }
+            }
+            </style>
+            
+            <script>
+            const devTruths = [
+                "My code has 2 states: 'Works on my machine' and 'Why would you do that?'",
+                "99 little bugs in the code, fix one bug - 117 bugs in the code!",
+                "I don't always test my code, but when I do, I do it in production!",
+                "Commit message: 'Fixed stuff' (changes: everything)",
+                "My keyboard has 2 worn keys: Ctrl and Z",
+                "Debugging: The art of yelling 'WHY??' at your screen",
+                "I write code that only I and God understand - now only God knows"
+            ];
+            
+            function showWisdom() {
+                const popup = document.querySelector('.popup-body');
+                const container = document.getElementById('goldPopup');
+                const message = document.getElementById('popupMessage');
+                const scrollY = window.scrollY;
+                
+                message.textContent = devTruths[Math.floor(Math.random() * devTruths.length)];
+                container.style.display = 'block';
+                container.style.top = `${scrollY + window.innerHeight / 2}px`;
+                setTimeout(() => popup.classList.add('active'), 10);
+            }
+            
+            function hidePopup() {
+                const popup = document.querySelector('.popup-body');
+                popup.classList.remove('active');
+                setTimeout(() => {
+                    document.getElementById('goldPopup').style.display = 'none';
+                }, 300);
+            }
+            </script>
+            
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Branding Section -->
+            <div class="footer-brand">
+                <h3 class="footer-logo">#SharpCrypter</h3>
+                <p class="footer-tagline">Secure Communication Engine</p>
+                <div class="footer-social">
+                    <a href="https://github.com/PanagiotisKotsorgios" target="_blank" aria-label="GitHub" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/panagiotis-kotsorgios-019ab9303/" target="_blank" aria-label="LinkedIn" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:pkotsorgios654@gmail.com" aria-label="Email" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Footer Sections Grid -->
+            <div class="footer-grid">
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="security.html">Security White Paper</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                        <li><a href="samples.html">Code Samples</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="licensing.html">Cryptographic Licensing</a></li>
+                        <li><a href="compliance.html">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h4 class="footer-heading">Connect</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Athens, GR</li>
+                        <li><i class="fas fa-envelope"></i> pkotsorgios654@gmail.com</li>
+                        <li><i class="fas fa-shield-alt"></i> PGP Key: 0x8F3A2B1C <span style="color: #FF8C00;">[ Visual Only ]</span></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Copyright & Attribution -->
+            <div class="footer-bottom">
+                <div class="made-with">
+                    <span>Engineered with <i class="fas fa-heart pulse"></i> by Panagiotis Kotsorgios using</span>
+                    <div class="tech-stack">
+                        <i class="fab fa-linux" title="Linux"></i>
+                        <i class="fas fa-terminal" title="CLI"></i>
+                        <i class="fas fa-microchip" title="Embedded"></i>
+                        <i class="fas fa-shield-halved" title="Security"></i>
+                    </div>
+                </div>
+                <p class="copyright">&copy; 2025 Panagiotis Kotsorgios. All rights reserved.<br>
+
+                                    <div class="end-line">
+                                        <hr>
+                                    
+                                    </div>
+                                    <style>
+                                        .end-line hr {
+                                    
+                                    
+                                            color: #FFA500;
+                                            background-color: #FFA500;
+                                            border: 1px solid #FFA500;
+                                            width: 50px;
+                                            height: 1px;
+                                    
+                                        }
+                                    </style>
+
+
+                <small>v0.0.1 | SHA-256: 9a3f...d41c</small></p>
+            </div>
+        </div>
+    </footer>
+    
+    <style>
+    /* Updated Footer Styles */
+    .site-footer {
+        background: var(--bg-light);
+        padding: 4rem 2rem;
+        border-top: 1px solid var(--border-color);
+        position: relative;
+    }
+    
+    .footer-container {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+    
+    .footer-brand {
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+    
+    .footer-logo {
+        color: var(--warning);
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .footer-tagline {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .footer-section {
+        padding: 1rem;
+    }
+    
+    .footer-heading {
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+    
+    .footer-heading::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--accent);
+    }
+    
+.footer-links li {
+    margin-bottom: 0.8rem;
+    list-style: lower-roman;
+    padding: 0; /* Remove or adjust this value */
+    color: #FFA500;
+}
+    
+    .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: var(--transition);
+        font-size: 0.95rem;
+        display: inline-block;
+        padding: 4px 0;
+    }
+    
+    .footer-links a:hover {
+        color: var(--warning);
+        transform: translateX(5px);
+    }
+    
+    .footer-contact li {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .footer-contact i {
+        color: var(--accent);
+        width: 20px;
+        text-align: center;
+    }
+    
+    .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .social-link {
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+        transition: var(--transition);
+    }
+    
+    .social-link:hover {
+        color: var(--accent-hover);
+        transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+        border-top: 1px solid var(--border-color);
+        padding-top: 2rem;
+        text-align: center;
+    }
+    
+    .made-with {
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+    }
+    
+    .tech-stack {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .tech-stack i {
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        transition: var(--transition);
+    }
+    
+    .tech-stack i:hover {
+        color: var(--accent);
+    }
+    
+    .copyright {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .pulse {
+        color: var(--warning);
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+    
+    @media (max-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-section {
+            text-align: center;
+        }
+        
+        .footer-heading::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .footer-contact li {
+            justify-content: center;
+        }
+        
+        .footer-links a:hover {
+            transform: none;
+        }
+    }
+    </style>
+
+
+
+            <!-- Modal Structure -->
+<div class="professional-modal" id="proModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="8"></line>
+                </svg>
+            </div>
+            <h3 class="modal-title">Form Submission Disabled</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p class="modal-text">This portfolio form is currently in demonstration mode. GitHub Pages restricts server-side processing for security reasons.</p>
+            <div class="modal-alert">
+                <p class="modal-alert-text">📨 Please contact directly via:</p>
+                <a href="mailto:contact@example.com" class="modal-email">pkotsorgios654@gmail.com</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
