@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Kotsorgios Newsletter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Login Container */
+        .auth-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        /* Branding Section */
+        .branding-side {
+            padding: 2rem;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .newsletter-logo {
+            font-size: 2.5rem;
+            color: #818cf8;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .newsletter-tagline {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .features-list li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #94a3b8;
+        }
+
+        /* Login Form */
+        .auth-form {
+            padding: 2rem;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #f8fafc;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #94a3b8;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 0.5rem;
+            color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            color: #94a3b8;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #818cf8;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #6674cc;
+            transform: translateY(-1px);
+        }
+
+        .auth-links {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .auth-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .auth-links a:hover {
+            color: #818cf8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+                margin: 2rem;
+                gap: 2rem;
+            }
+
+            .branding-side {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding-bottom: 2rem;
+            }
+
+            .newsletter-logo {
+                font-size: 2rem;
+            }
+        }
+        .signup-requirements {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 0.5rem;
+        }
+
+        .password-rules {
+            list-style: none;
+            margin-top: 1rem;
+            color: #94a3b8;
+        }
+
+        .password-rules li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terms-agreement {
+            margin: 1.5rem 0;
+            color: #94a3b8;
+        }
+
+        .terms-agreement a {
+            color: #818cf8;
+            text-decoration: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Branding Side -->
+        <div class="branding-side">
+            <div class="newsletter-logo">
+                <i class="fas fa-user-plus"></i>
+                <span>Join Our Community</span>
+            </div>
+            <p class="newsletter-tagline">
+                Create your account to access exclusive technical content, security updates, 
+                and join a network of 1500+ developers and security professionals.
+            </p>
+            
+            <ul class="features-list">
+                <li><i class="fas fa-lock"></i> End-to-End Encrypted Communications</li>
+                <li><i class="fas fa-certificate"></i> Verified Security Practices</li>
+                <li><i class="fas fa-project-diagram"></i> Community Collaboration</li>
+                <li><i class="fas fa-bell-slash"></i> Zero Spam Guarantee</li>
+            </ul>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="auth-form">
+            <h2 class="form-title">Create Account</h2>
+            
+            <form>
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" class="input-field" 
+                           placeholder="Panagiotis Kotsorgios" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Professional Email</label>
+                    <input type="email" id="email" class="input-field" 
+                           placeholder="pkotsorgios654@gmail.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Create Password</label>
+                    <div style="position: relative;">
+                        <input type="password" id="password" class="input-field" 
+                               placeholder="••••••••" required>
+                        <i class="fas fa-eye password-toggle"></i>
+                    </div>
+                </div>
+
+                <div class="signup-requirements">
+                    <h4 style="color: #f8fafc; margin-bottom: 0.5rem;">Password Requirements:</h4>
+                    <ul class="password-rules">
+                        <li><i class="fas fa-check-circle"></i> Minimum 12 characters</li>
+                        <li><i class="fas fa-check-circle"></i> At least 1 uppercase letter</li>
+                        <li><i class="fas fa-check-circle"></i> Include numbers & symbols</li>
+                    </ul>
+                </div>
+
+                <div class="terms-agreement">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#terms">Terms of Service</a> and 
+                    <a href="#privacy">Privacy Policy</a></label>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Account</button>
+
+                <div class="auth-links">
+                    <p style="margin: 1rem 0;">Already have an account? <a href="login.html">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include your existing footer here -->
+    <footer class="site-footer">
+        <!-- Your existing footer content -->
+    </footer>
+
+    <script>
+        // Password toggle functionality
+        document.querySelectorAll('.password-toggle').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const passwordField = this.previousElementSibling;
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+</body>
+</html>

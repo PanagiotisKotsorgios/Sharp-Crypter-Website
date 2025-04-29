@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helper Class Documentation - SharpCrypterCLI</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-light: #111111;
+            --accent: #2a7fff;
+            --accent-hover: #4d94ff;
+            --warning: #FFA500;
+            --text-primary: #f0f0f0;
+            --text-secondary: #888;
+            --border-color: #252525;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-light);
+            padding: 2rem 1rem;
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem 4rem;
+            max-width: 800px;
+        }
+
+        .method-details {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .code-block {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: 'Consolas', monospace;
+            border: 1px solid var(--border-color);
+        }
+
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .param-table th, .param-table td {
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .note {
+            background: rgba(255, 165, 0, 0.1);
+            padding: 1.5rem;
+            border-left: 4px solid var(--warning);
+            margin: 1.5rem 0;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>Helper Class</h2>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#showexamples">ShowExamples()</a></li>
+                <li><a href="#basicargshelper">BasicArgsHelper()</a></li>
+                <li><a href="#command-reference">Command Reference</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="method-details">
+                <h1 id="overview">Helper Class Documentation</h1>
+                <p><em>Provides user assistance and command-line interface documentation</em></p>
+                <div class="meta-info">
+                    <span>Namespace: SharpCrypterCLI</span><br>
+                    <span>Class Type: Static</span><br>
+                    <span>Version: 0.0.1</span>
+                </div>
+            </div>
+
+            <section id="showexamples">
+                <div class="method-details">
+                    <h2>ShowExamples() Method</h2>
+                    <p><em>Displays comprehensive usage examples for the SharpCrypterCLI</em></p>
+                    
+                    <h3>Method Signature</h3>
+                    <div class="code-block">
+                        public static void ShowExamples()
+                    </div>
+
+                    <h3>Output Structure</h3>
+                    <table class="param-table">
+                        <tr>
+                            <th>Section</th>
+                            <th>Description</th>
+                            <th>Examples</th>
+                        </tr>
+                        <tr>
+                            <td>File Encryption</td>
+                            <td>Demonstrates file encryption syntax</td>
+                            <td>--encrypt, -e</td>
+                        </tr>
+                        <tr>
+                            <td>File Decryption</td>
+                            <td>Shows decryption command formats</td>
+                            <td>--decrypt, -d</td>
+                        </tr>
+                        <tr>
+                            <td>Key Generation</td>
+                            <td>Key creation commands</td>
+                            <td>--generate-key, -g</td>
+                        </tr>
+                        <tr>
+                            <td>GUI Launch</td>
+                            <td>Graphical interface startup</td>
+                            <td>--launch-gui, -l</td>
+                        </tr>
+                    </table>
+
+                    <h3>Detailed Example Breakdown</h3>
+                    <div class="code-block">
+                        <h4>Encryption Example</h4>
+                        <code>sharp-c --encrypt --file example.txt --secret-key mysecretkey --method aes</code>
+                        <ul>
+                            <li><strong>--file</strong>: Specifies input file</li>
+                            <li><strong>--secret-key</strong>: Required encryption key</li>
+                            <li><strong>--method</strong>: Encryption algorithm selection</li>
+                        </ul>
+                    </div>
+
+                    <div class="note">
+                        <strong>Current Implementation Status:</strong><br>
+                        <ul>
+                            <li>✅ Caesar Cipher fully implemented</li>
+                            <li>⚠️ AES/RSA/DES partially implemented</li>
+                            <li>❌ GUI not available</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="basicargshelper">
+                <div class="method-details">
+                    <h2>BasicArgsHelper() Method</h2>
+                    <p><em>Displays quick reference for basic command usage</em></p>
+                    
+                    <h3>Method Signature</h3>
+                    <div class="code-block">
+                        public static void BasicArgsHelper()
+                    </div>
+
+                    <h3>Core Commands</h3>
+                    <table class="param-table">
+                        <tr>
+                            <th>Command</th>
+                            <th>Short Form</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>--help</td>
+                            <td>-h</td>
+                            <td>Basic help information</td>
+                        </tr>
+                        <tr>
+                            <td>--help -p</td>
+                            <td>-h -p</td>
+                            <td>Detailed documentation</td>
+                        </tr>
+                        <tr>
+                            <td>--examples</td>
+                            <td>-ex</td>
+                            <td>Usage examples</td>
+                        </tr>
+                    </table>
+
+                    <h3>Output Example</h3>
+                    <div class="code-block">
+                        <pre>Usage: sharp-c [command]
+
+Available Commands:
+--help                   Display the help information.
+--help -p                Display detailed help documentation.
+--examples               Show usage examples...</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="command-reference">
+                <div class="method-details">
+                    <h2>Full Command Reference</h2>
+                    <table class="param-table">
+                        <tr>
+                            <th>Command</th>
+                            <th>Parameters</th>
+                            <th>Required</th>
+                            <th>Default</th>
+                        </tr>
+                        <tr>
+                            <td>--encrypt</td>
+                            <td>-f, -s, -m</td>
+                            <td>Yes</td>
+                            <td>method=caesar</td>
+                        </tr>
+                        <tr>
+                            <td>--decrypt</td>
+                            <td>-f, -s, -m</td>
+                            <td>Yes</td>
+                            <td>method=caesar</td>
+                        </tr>
+                        <tr>
+                            <td>--generate-key</td>
+                            <td>[length]</td>
+                            <td>No</td>
+                            <td>length=16</td>
+                        </tr>
+                    </table>
+
+                    <div class="note">
+                        <strong>Security Recommendations:</strong>
+                        <ul>
+                            <li>Use keys with minimum 256-bit entropy</li>
+                            <li>Rotate keys every 90 days</li>
+                            <li>Never store keys in plaintext</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
