@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SharpCrypter News</title>
+  <style>
+    :root {
+      --bg-dark: #0a0a0a;
+      --bg-light: #111111;
+      --accent: #FFA500;
+      --accent-hover: #FF8C00;
+      --warning: #FFD700;
+      --text-primary: #f0f0f0;
+      --text-secondary: #888;
+      --border-color: #3d3d3d;
+      --scrollbar: #1a1a1a;
+      --scrollbar-thumb: #FFA50099;
+      --easing: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.3s var(--easing);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+    body { margin: 0; padding: 0; font-family: 'Inter', system-ui; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 12px; background: var(--scrollbar); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, var(--accent), var(--warning)); border-radius: 6px; border: 3px solid var(--scrollbar); transition: var(--transition); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); transform: scale(1.05); }
+
+    .container { display: flex; min-height: 100vh; animation: fadeIn 0.6s var(--easing) forwards; }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform: translateY(0);} }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(180deg, var(--bg-light) 0%, #1a1a1a 100%);
+      padding: 2rem 1.5rem;
+      border-right: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      box-shadow: 8px 0 25px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .sidebar h2 {
+      color: var(--warning);
+      font-size: 1.6rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    .sidebar ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar li { margin: 1rem 0; }
+    .sidebar a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: block;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .sidebar a:hover { color: var(--warning); transform: translateX(8px); }
+    .sidebar a.active { color: var(--accent); background: rgba(255,165,0,0.05); font-weight:600; }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      background: linear-gradient(45deg, var(--warning), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--text-secondary); font-size: 1.1rem; margin-top: 1rem; }
+
+    /* News Grid */
+    .news-section { margin-top: 2rem; }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .news-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .news-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+    }
+    .news-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+    .news-content {
+      padding: 1.5rem;
+    }
+    .news-content h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .news-content small {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .news-content p {
+      color: var(--text-secondary);
+      margin: 0.75rem 0 1rem;
+      line-height: 1.5;
+    }
+    .news-content a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .news-content a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-light);
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    footer p { margin: 0; color: var(--text-secondary); }
+
+    @media(max-width:768px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+      .main { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <h2>SharpCrypter</h2>
+      <ul>
+          <li><a href="index.html" >Overview</a></li>
+          <li><a href="index.html #features">Features</a></li>
+          <li><a href="index.html #demo">Demo & Code</a></li>
+          <li><a href="index.html #download">Download</a></li>
+          <li><a href="index.html #faq">FAQ</a></li>
+          <li><a href="creator.html">Developer</a></li>
+          <li><a href="index2.html">Documentation</a></li>
+          <li><a href="encryptor-online.html">Online Encryptor</a></li>
+          <li><a href="community.html" class="active">Community</a></li>
+        </ul>
+  </nav>
+    <main class="main">
+      <!-- News Hero -->
+<!-- Simplified SecureCrypt News Section -->
+<section class="news-hero">
+  <div class="news-content">
+      <h1 class="news-title">
+          <i class="fas fa-newspaper"></i>
+          SharpCrypter News
+      </h1>
+      
+      <p class="news-subtitle">
+          Latest updates & security advisories
+      </p>
+
+      <div class="action-buttons">
+          <a href="#updates" class="news-btn primary">
+              <i class="fas fa-bullhorn"></i>
+              View Updates
+          </a>
+          
+          <a href="#community" class="news-btn secondary">
+              <i class="fas fa-comments"></i>
+              Join Community
+          </a>
+      </div>
+  </div>
+</section>
+
+<style>
+/* Minimal News Section Styles */
+.news-hero {
+  background: linear-gradient(145deg, var(--bg-light), var(--bg-dark));
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.news-title {
+  font-size: 2.2rem;
+  margin: 0 0 1rem;
+  background: linear-gradient(45deg, var(--warning), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.news-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.news-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+}
+
+.news-btn.primary {
+  background: var(--accent);
+  color: var(--bg-dark);
+}
+
+.news-btn.secondary {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+/* Hover Effects */
+.news-btn.primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255,165,0,0.2);
+}
+
+.news-btn.secondary:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Click Effect */
+.news-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .news-hero {
+      padding: 1.5rem;
+      margin: 1rem;
+  }
+  
+  .news-title {
+      font-size: 1.8rem;
+  }
+  
+  .action-buttons {
+      flex-direction: column;
+      width: 100%;
+  }
+  
+  .news-btn {
+      width: 100%;
+      justify-content: center;
+  }
+}
+</style>
+
+      <!-- News Grid -->
+      <section id="news" class="news-section">
+        <div class="news-grid">
+          <!-- News Item 1 -->
+          <div class="news-card">
+            <img src="data:image/jpeg;base64,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" alt="Release v2.0">
+            <div class="news-content">
+              <h3>SharpCrypter v0.0.1 Official Release</h3>
+              <small>April 15, 2025</small>
+              <p>We’re thrilled to announce SharpCrypter VERSION v0.0.1, featuring bulk encryption, enhanced CLI support, and performance improvements.</p>
+              <a href="#">Read More →</a>
+            </div>
+          </div>
+<!-- YouTube Tutorial Item -->
+<div class="news-card">
+  <img src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" alt="YouTube Tutorial Thumbnail">
+  <div class="news-content">
+    <h3>How to Use SHARPCRYPTER on YouTube</h3>
+    <small>Published May 11, 2025</small>
+    <p>Learn step-by-step how to install, configure, and demo SHARPCRYPTER in a live YouTube tutorial. Perfect for beginners and pros alike!</p>
+    <a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank">Watch Tutorial →</a>
+  </div>
+</div>
+
+<!-- News Item 3: Latest GitHub Bug & Fixes -->
+<div class="news-card">
+  <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+  <div class="news-content">
+    <h3>Alert: Critical GitHub Issue Identified & Patched</h3>
+    <small>May 9, 2025</small>
+    <p>We discovered a high-severity bug in our v0.0.1 release that could cause intermittent build failures. The issue has now been fully investigated and patched—please pull the latest commits to get the fix.</p>
+    <a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter/issues/42" target="_blank">View Issue #42 &rarr;</a>
+  </div>
+</div>
+
+<!-- News Item 4: AES & RSA Encryption Under Development in v0.0.2 -->
+<div class="news-card">
+  <img src="logo-MAIN.png" alt="AES & RSA Encryption (In Development)">
+  <div class="news-content">
+    <h3>v0.0.1 In Development: AES & RSA Encryption</h3>
+    <small>May 11, 2025</small>
+    <p>Work is underway on version 0.0.1! Next up: built-in AES-256 symmetric encryption plus RSA public-key routines for seamless key exchange. Stay tuned for the beta drop.</p>
+    <a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter/milestone/1" target="_blank">Track Development &rarr;</a>
+  </div>
+</div>
+
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+        <!-- Branding Section -->
+        <div class="footer-brand">
+            <h3 class="footer-logo">SharpCrypter</h3>
+            <p class="footer-tagline">Secure File Encryption Application</p>
+            <div class="footer-social">
+                <a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter" target="_blank" aria-label="GitHub" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/panagiotis-kotsorgios-019ab9303/" target="_blank" aria-label="LinkedIn" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:pkotsorgios654@gmail.com" aria-label="Email" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer Sections Grid -->
+        <div class="footer-grid">
+            <!-- Resources -->
+            <div class="footer-section">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="documentation.html">Web Documentation</a></li>
+                    <li><a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter/tree/main/docs/markdown">GitHub Documentation</a></li>
+                    <li><a href="encryptor-online.html">API Documentation</a></li>
+                    <li><a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter/tree/main/SharpCrypterCLI/SharpCrypterCLI">Source Code</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal -->
+            <div class="footer-section">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="licensing.html">Project Licensing</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-section">
+                <h4 class="footer-heading">Connect</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Athens, GR</li>
+                    <li><i class="fas fa-envelope"></i> pkotsorgios654@gmail.com</li>
+                    <li><i class="fas fa-shield-alt"></i> PGP Key: 0x8F3A2B1C <span style="color: #FF8C00;">[ Visual Only ]</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright & Attribution -->
+        <div class="footer-bottom">
+            <div class="made-with">
+                <span>Engineered with <i class="fas fa-heart pulse"></i> by Panagiotis Kotsorgios using</span>
+                <div class="tech-stack">
+                    <i class="fab fa-linux" title="Linux"></i>
+                    <i class="fas fa-terminal" title="CLI"></i>
+                    <i class="fas fa-microchip" title="Embedded"></i>
+                    <i class="fas fa-shield-halved" title="Security"></i>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2025 Panagiotis Kotsorgios. All rights reserved.<br>
+                
+                
+                <div class="end-line">
+                    <hr>
+
+                </div>
+                <style>
+                  .end-line hr{
+              
+                     
+                      color: #FFA500;
+                      background-color: #FFA500;
+                      border: 1px solid #FFA500;
+                      width: 50px;
+                      height: 1px;
+                      
+                  }
+              </style>
+              
+                          <small>v0.0.1 | SHA-256: 9a3f...d41c</small></p>
+                      </div>
+                  </div>
+              </footer>
+              
+              <style>/* Updated Footer Styles */
+              
+              ul {
+                  display: block;
+                  list-style-type: disc;
+                  margin-block-start: 1em;
+                  margin-block-end: 1em;
+                  padding-inline-start: 20px;
+                  unicode-bidi: isolate;
+              }
+              
+              ul.footer-contact {
+                  display: block;
+                  list-style-type: disc;
+                  margin-block-start: 1em;
+                  margin-block-end: 1em;
+                  padding-inline-start: 0px;
+                  unicode-bidi: isolate;
+              }
+              
+              .site-footer {
+                  background: var(--bg-light);
+                  padding: 4rem 2rem;
+                  border-top: 1px solid var(--border-color);
+                  position: relative;
+              }
+              
+              .footer-container {
+                  max-width: 1280px;
+                  margin: 0 auto;
+              }
+              
+              .footer-brand {
+                  text-align: center;
+                  margin-bottom: 3rem;
+                  position: relative;
+              }
+              
+              .footer-logo {
+                  color: var(--warning);
+                  font-size: 2rem;
+                  margin-bottom: 0.5rem;
+                  font-weight: 700;
+                  letter-spacing: -0.5px;
+                  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+              }
+              
+              .footer-tagline {
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  margin-bottom: 1.5rem;
+              }
+              
+              .footer-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                  gap: 2rem;
+                  margin-bottom: 3rem;
+              }
+              
+              .footer-section {
+                  padding: 1rem;
+              }
+              
+              .footer-heading {
+                  color: var(--text-primary);
+                  font-size: 1.1rem;
+                  margin-bottom: 1.5rem;
+                  position: relative;
+                  padding-bottom: 0.5rem;
+              }
+              
+              .footer-heading::after {
+                  content: '';
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  width: 40px;
+                  height: 2px;
+                  background: var(--accent);
+              }
+              
+              .footer-links li {
+                  margin-bottom: 0.8rem;
+                  list-style: lower-roman;
+                  padding: 0; /* Remove or adjust this value */
+                  color: #FFA500;
+              }
+              
+              .footer-links a {
+                  color: var(--text-secondary);
+                  text-decoration: none;
+                  transition: var(--transition);
+                  font-size: 0.95rem;
+                  display: inline-block;
+                  padding: 0px 0;
+              }
+              
+              .footer-links a:hover {
+                  color: var(--warning);
+                  transform: translateX(5px);
+              }
+              
+              .footer-contact li {
+                  color: var(--text-secondary);
+                  margin-bottom: 1rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.8rem;
+              }
+              
+              .footer-contact i {
+                  color: var(--accent);
+                  width: 20px;
+                  text-align: center;
+              }
+              
+              .footer-social {
+                  display: flex;
+                  justify-content: center;
+                  gap: 1.5rem;
+                  margin-top: 1.5rem;
+              }
+              
+              .social-link {
+                  color: var(--text-secondary);
+                  font-size: 1.2rem;
+                  transition: var(--transition);
+              }
+              
+              .social-link:hover {
+                  color: var(--accent-hover);
+                  transform: translateY(-3px);
+              }
+              
+              .footer-bottom {
+                  border-top: 1px solid var(--border-color);
+                  padding-top: 2rem;
+                  text-align: center;
+              }
+              
+              .made-with {
+                  margin-bottom: 1.5rem;
+                  color: var(--text-secondary);
+              }
+              
+              .tech-stack {
+                  display: flex;
+                  justify-content: center;
+                  gap: 1.5rem;
+                  margin-top: 1rem;
+              }
+              
+              .tech-stack i {
+                  font-size: 1.5rem;
+                  color: var(--text-secondary);
+                  transition: var(--transition);
+              }
+              
+              .tech-stack i:hover {
+                  color: var(--accent);
+              }
+              
+              .copyright {
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  line-height: 1.6;
+              }
+              
+              .pulse {
+                  color: var(--warning);
+                  animation: pulse 1.5s infinite;
+              }
+              
+              @keyframes pulse {
+                  0%, 100% { transform: scale(1); }
+                  50% { transform: scale(1.2); }
+              }
+              
+              @media (max-width: 768px) {
+                  .footer-grid {
+                      grid-template-columns: 1fr;
+                  }
+              
+                  .footer-section {
+                      text-align: center;
+                  }
+              
+                  .footer-heading::after {
+                      left: 50%;
+                      transform: translateX(-50%);
+                  }
+              
+                  .footer-contact li {
+                      justify-content: center;
+                  }
+              
+                  .footer-links a:hover {
+                      transform: none;
+                  }
+              }
+              
+              </style>
+</body>
+</html>

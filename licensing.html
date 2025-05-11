@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License - Sharp Crypter</title>
+    <style>
+    /* Inherited CSS Variables */
+    :root {
+        --bg-dark: #0a0a0a;
+        --bg-light: #111111;
+        --accent: #FFA500;
+        --accent-hover: #FF8C00;
+        --warning: #FFD700;
+        --text-primary: #f0f0f0;
+        --text-secondary: #888;
+        --border-color: #3d3d3d;
+        --scrollbar: #1a1a1a;
+        --scrollbar-thumb: #FFA50099;
+        --easing: cubic-bezier(0.4, 0, 0.2, 1);
+        --transition: all 0.3s var(--easing);
+    }
+
+    /* Consistent Base Styles */
+    body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        line-height: 1.65;
+    }
+
+    .container {
+        display: flex;
+        min-height: 100vh;
+        opacity: 0;
+        animation: fadeIn 0.6s var(--easing) forwards;
+    }
+
+    .main-content {
+        flex: 1;
+        padding: 3rem 5rem;
+        max-width: 900px;
+    }
+
+    /* License Specific Styles */
+    .license-header {
+        background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+        padding: 3rem;
+        border-radius: 16px;
+        margin-bottom: 3rem;
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
+
+    .license-header h1 {
+        font-size: 2.8rem;
+        margin: 0 0 0.5rem 0;
+        background: linear-gradient(45deg, var(--warning), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .license-body {
+        background: var(--bg-light);
+        padding: 2.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        position: relative;
+        white-space: pre-wrap;
+        font-family: 'Inter', system-ui;
+    }
+
+    .license-divider {
+        height: 2px;
+        background: var(--border-color);
+        margin: 2rem 0;
+        position: relative;
+    }
+
+    .license-divider::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -1px;
+        width: 60px;
+        height: 4px;
+        background: var(--accent);
+    }
+
+    .disclaimer-emphasis {
+        color: var(--warning);
+        font-weight: 600;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .main-content {
+            padding: 2rem;
+        }
+
+        .license-header {
+            padding: 2rem;
+        }
+
+        .license-body {
+            padding: 1.5rem;
+            font-size: 0.95rem;
+        }
+    }
+
+    /* Existing Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main class="main-content">
+            <header class="license-header">
+                <h1>MIT License</h1>
+                <p>Sharp Crypter · Legal Terms</p>
+            </header>
+
+            <div class="license-body">
+                MIT License
+
+                Copyright (c) 2025 Panagiotis Kotsorgios
+
+                Permission is hereby granted, free of charge, to any person obtaining a copy
+                of this software and associated documentation files (the "Software"), to deal
+                in the Software without restriction, including without limitation the rights
+                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                copies of the Software, and to permit persons to whom the Software is
+                furnished to do so, subject to the following conditions:
+
+                <div class="license-divider"></div>
+
+                The above copyright notice and this permission notice shall be included in all
+                copies or substantial portions of the Software.
+
+                <span class="disclaimer-emphasis">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                SOFTWARE.</span>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

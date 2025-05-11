@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyGenerator Documentation - SharpCrypterCLI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+ 
+        
+        <nav class="sidebar">
+            <h2 style="color: var(--warning)">SharpCrypterCLI</h2>
+            <ul>
+                <li><a href="encryptor.html">Encryptor.cs</a></li>
+                <li><a href="decryptor.html">Decryptor.cs</a></li>
+                <li><a href="#keygen">KeyGenerator.cs</a></li>
+                <li><a href="#generatekey">GenerateKey</a></li>
+                <li><a href="#security">Security Practices</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="file-header" style="border-color: var(--accent)">
+                <h1 id="keygen">KeyGenerator.cs</h1>
+                <div class="meta-info">
+                    <span>Namespace: SharpCrypterCLI</span><br>
+                    <span>Class: KeyGenerator</span><br>
+                    <span>Version: 0.0.1</span>
+                </div>
+                <p><em style="color: var(--warning)">Cryptographically secure key generation</em></p>
+            </div>
+
+            <div class="note">
+                <strong>Critical Security Component:</strong> Proper key management is essential for maintaining encryption security. Generated keys should never be stored in plaintext.
+            </div>
+
+            <section id="generatekey">
+                <h2>GenerateKey Method</h2>
+                <div class="method-details" style="border-color: var(--accent)">
+                    <h3>public static string GenerateKey(int length = 16)</h3>
+                    
+                    <h4>Parameters</h4>
+                    <table class="param-table">
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                        </tr>
+                        <tr>
+                            <td>length</td>
+                            <td>int</td>
+                            <td>Key length in bytes (not characters)</td>
+                            <td>16</td>
+                        </tr>
+                    </table>
+
+                    <h4>Exceptions</h4>
+                    <ul class="exception-list">
+                        <li><strong>CryptographicException</strong>: RNGCSP failure</li>
+                        <li><strong>ArgumentException</strong>: length ≤ 0</li>
+                    </ul>
+
+                    <h4>Example Usage</h4>
+                    <div class="code-block">
+                        <code>// Generate 256-bit key<br>string key = KeyGenerator.GenerateKey(32);</code>
+                    </div>
+
+                    <div class="note" style="background: rgba(255, 165, 0, 0.2);">
+                        <strong>Warning:</strong> Default 16-byte (128-bit) keys may not be sufficient for some encryption algorithms
+                    </div>
+                </div>
+            </section>
+
+            <section id="security">
+                <h2>Security Best Practices</h2>
+                <div class="method-details" style="border-color: var(--accent)">
+                    <h3>Key Management Guidelines</h3>
+                    <table class="security-table">
+                        <tr>
+                            <th>Algorithm</th>
+                            <th>Recommended Key Length</th>
+                            <th>Security Level</th>
+                        </tr>
+                        <tr>
+                            <td>AES</td>
+                            <td>32 bytes (256-bit)</td>
+                            <td>Military-grade</td>
+                        </tr>
+                        <tr>
+                            <td>RSA</td>
+                            <td>2048+ bits</td>
+                            <td>Commercial</td>
+                        </tr>
+                        <tr>
+                            <td>Caesar*</td>
+                            <td>N/A</td>
+                            <td style="color: var(--accent)">Not secure</td>
+                        </tr>
+                    </table>
+
+                    <h4>Storage Recommendations</h4>
+                    <ul class="security-list">
+                        <li>Use secure vaults or HSM (Hardware Security Modules)</li>
+                        <li>Encrypt keys with master keys (Key Encryption Keys)</li>
+                        <li>Never commit keys to version control</li>
+                        <li>Rotate keys periodically</li>
+                    </ul>
+
+                    <div class="note" style="background: rgba(255, 0, 0, 0.1);">
+                        <strong>Critical:</strong> This implementation currently lacks secure key storage features - keys must be manually protected
+                    </div>
+                </div>
+            </section>
+
+            <section id="integration">
+                <h2>System Integration</h2>
+                <div class="method-details">
+                    <div class="code-block">
+                        <pre>Encryption Flow:
+1. KeyGenerator.GenerateKey()
+2. Encryptor.Encrypt(data, key)
+3. Securely store key
+
+Decryption Flow:
+1. Retrieve encrypted data
+2. Retrieve stored key
+3. Decryptor.Decrypt(data, key)</pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

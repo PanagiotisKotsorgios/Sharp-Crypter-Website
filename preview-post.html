@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium News Preview - Kotsorgios Digest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #818cf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --bg-primary: #0f172a;
+            --border: rgba(255,255,255,0.1);
+            --gradient: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%);
+            --success: #34d399;
+            --warning: #fbbf24;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .preview-container {
+            max-width: 1100px;
+            margin: 4rem auto;
+            padding: 4rem;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient);
+            opacity: 0.03;
+            z-index: -1;
+            animation: gradientRotate 20s linear infinite;
+        }
+
+        @keyframes gradientRotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--accent);
+            border-radius: 0.75rem;
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateX(-10px);
+        }
+
+        .article-header {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .category-badge {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--accent);
+            padding: 0.5rem 1.25rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid var(--accent);
+        }
+
+        .article-title {
+            font-size: 3rem;
+            line-height: 1.15;
+            margin: 2.5rem 0;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 16px rgba(129, 140, 248, 0.15);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 0.75rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .meta-item:hover {
+            background: rgba(129, 140, 248, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .article-featured-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 1.5rem;
+            margin: 4rem 0;
+            object-fit: cover;
+            border: 2px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        .article-context-container {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+        }
+
+        .context-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .context-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .context-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .context-link {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .context-link:hover {
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .context-body {
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .context-highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .context-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .context-tag {
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content h2 {
+            color: var(--text-primary);
+            margin: 4rem 0 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent);
+            font-size: 2rem;
+        }
+
+        .article-content p {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .article-content blockquote {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(129, 140, 248, 0.05);
+            border-left: 4px solid var(--accent);
+            border-radius: 1rem;
+            font-style: italic;
+        }
+
+        .article-content pre {
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            margin: 3rem 0;
+            border: 1px solid var(--border);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .author-bio {
+            margin: 6rem 0;
+            padding: 3rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 3rem;
+            align-items: center;
+            border: 1px solid var(--border);
+        }
+
+        .author-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+        }
+
+        .author-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-verified {
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+
+        .author-socials {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .author-socials a {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .author-socials a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .comments-section {
+            margin-top: 6rem;
+            padding-top: 4rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .comment {
+            padding: 2rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 1rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .comment:hover {
+            background: rgba(129, 140, 248, 0.03);
+            transform: translateX(10px);
+        }
+
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+
+        .comment-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .comment-action {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .comment-form {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .preview-container {
+                margin: 1rem;
+                padding: 2rem;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-featured-image {
+                height: 300px;
+            }
+
+            .author-bio {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .context-header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <a href="#" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+
+        <div class="article-header">
+            <span class="category-badge">
+                <i class="fas fa-shield-alt"></i>
+                Advanced Security
+            </span>
+            <h1 class="article-title">Modern Cybersecurity Strategies for Enterprise Protection</h1>
+            <div class="article-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-star"></i>
+                    September 20, 2023
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    15 min read
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-eye"></i>
+                    2.4k views
+                </div>
+            </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b" 
+             alt="Cybersecurity concept" 
+             class="article-featured-image">
+
+        <div class="article-context-container">
+            <div class="context-header">
+                <h3 class="context-title">
+                    <i class="fas fa-info-circle"></i>
+                    Article Context
+                </h3>
+                <div class="context-links">
+                    <a href="#" class="context-link">
+                        <span>Download PDF</span>
+                        <i class="fas fa-file-pdf"></i>
+                    </a>
+                    <a href="#" class="context-link">
+                        <span>View Sources</span>
+                        <i class="fas fa-link"></i>
+                    </a>
+                    <a href="#" class="context-link">
+                        <span>Share Analysis</span>
+                        <i class="fas fa-share-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <p class="context-body">
+                This technical analysis of <span class="context-highlight">zero-day vulnerabilities</span> explores 
+                modern defense strategies against evolving cyber threats. The article focuses on 
+                enterprise-level protection mechanisms, including behavioral analysis systems and 
+                AI-driven threat detection. Key topics include:
+            </p>
+
+            <div class="context-tags">
+                <span class="context-tag">#ZeroDayExploits</span>
+                <span class="context-tag">#CyberSecurity</span>
+                <span class="context-tag">#ThreatDetection</span>
+                <span class="context-tag">#EnterpriseSecurity</span>
+                <span class="context-tag">#IncidentResponse</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>Emerging Threat Landscape</h2>
+            <p>Recent developments in cyber warfare have revealed sophisticated attack vectors targeting critical infrastructure. State-sponsored actors are leveraging AI-powered tools to exploit vulnerabilities in legacy systems.</p>
+
+            <blockquote>
+                "Zero-day vulnerabilities represent the ultimate asymmetric weapon in modern cybersecurity"
+            </blockquote>
+
+            <h2>Technical Deep Dive</h2>
+            <pre><code>function detectAnomalies(system) {
+    const threatThreshold = 0.95;
+    return system.patterns
+               .filter(pattern => pattern.riskScore > threatThreshold)
+               .map(pattern => pattern.id);
+}</code></pre>
+
+            <h2>Defense Matrix Architecture</h2>
+            <p>Modern enterprise security requires a multi-layered approach:</p>
+            <ul>
+                <li>Real-time behavioral analysis</li>
+                <li>Automated patch management</li>
+                <li>Quantum-resistant encryption</li>
+                <li>Cross-platform threat intelligence</li>
+            </ul>
+
+            <div class="author-bio">
+                <img src="https://avatars.githubusercontent.com/u/16257515?v=4" 
+                     alt="Author Avatar" 
+                     class="author-avatar">
+                <div>
+                    <div class="author-name">
+                        Panagiotis Kotsorgios
+                        <i class="fas fa-check-circle author-verified"></i>
+                    </div>
+                    <p class="author-title">Senior Security Architect | CEH | CISSP</p>
+                    <p>10+ years experience in enterprise cybersecurity solutions. Specializing in threat intelligence and secure system architecture.</p>
+                    <div class="author-socials">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comments-section">
+                <h2 class="comments-header">
+                    <i class="fas fa-comments"></i>
+                    Expert Discussion (23)
+                </h2>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" 
+                             class="comment-avatar" 
+                             alt="User avatar">
+                        <div>
+                            <h3>Michael Chen</h3>
+                            <div class="comment-meta">
+                                <span>Security Analyst</span>
+                                <span class="comment-badge">Verified Expert</span>
+                                <span>• 2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Excellent analysis! Have you considered the implications of quantum computing on current encryption standards?</p>
+                    <div class="comment-actions">
+                        <span class="comment-action">
+                            <i class="fas fa-thumbs-up"></i>
+                            42
+                        </span>
+                        <span class="comment-action">
+                            <i class="fas fa-reply"></i>
+                            Reply
+                        </span>
+                    </div>
+                </div>
+
+                <form class="comment-form">
+                    <h3 class="form-title">Join Professional Discussion</h3>
+                    <div class="input-group">
+                        <input type="text" class="input-field" placeholder="Your Name">
+                    </div>
+                    <div class="input-group">
+                        <input type="email" class="input-field" placeholder="Email (Optional)">
+                    </div>
+                    <div class="input-group">
+                        <textarea class="input-field" rows="5" placeholder="Your professional insights..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Post Comment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

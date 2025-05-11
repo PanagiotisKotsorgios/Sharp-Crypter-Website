@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SharpCrypter Official Website | Panagiotis Kotsorgios</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <style>
+    :root {
+      --bg-dark: #0a0a0a;
+      --bg-light: #111111;
+      --accent: #FFA500;
+      --accent-hover: #FF8C00;
+      --warning: #FFD700;
+      --text-primary: #f0f0f0;
+      --text-secondary: #888;
+      --border-color: #3d3d3d;
+      --scrollbar: #1a1a1a;
+      --scrollbar-thumb: #FFA50099;
+      --easing: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.3s var(--easing);
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+    body { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; background: var(--bg-dark); color: var(--text-primary); }
+    ::-webkit-scrollbar { width: 12px; background: var(--scrollbar); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, var(--accent), var(--warning)); border-radius: 6px; border: 3px solid var(--scrollbar); transition: var(--transition); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); transform: scale(1.05); }
+    .container { display: flex; min-height: 100vh; opacity: 0; animation: fadeIn 0.6s var(--easing) forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px);} to { opacity:1; transform: translateY(0);} }
+    .sidebar { width: 280px; background: linear-gradient(180deg, var(--bg-light) 0%, #1a1a1a 100%); padding: 2rem 1.5rem; border-right:1px solid var(--border-color); position: sticky; top:0; height:100vh; overflow-y:auto; box-shadow:8px 0 25px rgba(0,0,0,0.4); backdrop-filter:blur(12px); }
+    .sidebar h2 { color: var(--warning); font-size:1.6rem; padding-bottom:1rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border-color); position:relative; letter-spacing:-0.5px; }
+    .sidebar h2::after { content:''; position:absolute; bottom:-2px; left:0; width:50px; height:2px; background:var(--accent); }
+    .sidebar ul { list-style:none; padding:0; margin:0; }
+    .sidebar li { margin:1rem 0; }
+    .sidebar a { color: var(--text-secondary); text-decoration:none; display:block; padding:10px 16px; border-radius:8px; font-weight:500; transition:var(--transition); position:relative; }
+    .sidebar a:hover { color: var(--warning); transform:translateX(8px); }
+    .sidebar a.active { color: var(--accent); background:rgba(255,165,0,0.05); font-weight:600; }
+
+    .main-content { flex:1; padding:3rem 4rem; max-width:900px; }
+    .section { margin-bottom:4rem; }
+    .section h1, .section h2 { margin-bottom:1rem; }
+    .hero { text-align:center; padding:4rem 2rem; background: linear-gradient(145deg, #1a1a1a, #2d2d2d); border-radius:16px; position:relative; overflow:hidden; }
+    .hero h1 { font-size:2.8rem; background:linear-gradient(45deg, var(--warning), var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero p { color: var(--text-secondary); margin:1.5rem 0; }
+    .btn-primary { background:linear-gradient(45deg, var(--accent), var(--warning)); color:var(--bg-dark); padding:0.75rem 1.5rem; border:none; border-radius:8px; font-weight:600; cursor:pointer; transition:var(--transition); }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 4px 15px rgba(255,140,0,0.3); }
+
+    .features { display: grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .feature-card { background: linear-gradient(145deg, #1a1a1a, #252525); padding:2rem; border-radius:12px; border:1px solid var(--border-color); box-shadow:0 4px 15px rgba(0,0,0,0.3); }
+    .feature-card h3 { margin-top:0; font-size:1.5rem; color: var(--warning); }
+    .feature-card p { color: var(--text-secondary); }
+
+    .code-snippet { background: linear-gradient(145deg, #1a1a1a, #252525); padding:2rem; border-radius:12px; overflow-x:auto; border:1px solid var(--border-color); }
+    .code-snippet code { color:#dcdcdc; font-family: 'Fira Code', monospace; }
+
+    .faq { max-width:800px; }
+    .faq-item { margin-bottom:1.5rem; }
+    .faq-item h4 { cursor:pointer; position:relative; padding-right:20px; }
+    .faq-item h4::after { content:'+'; position:absolute; right:0; }
+    .faq-item p { display:none; margin-top:0.5rem; color:var(--text-secondary); }
+
+
+
+    @media(max-width:768px) { .container{flex-direction:column;} .sidebar{width:100%;height:auto;border-right:none;border-bottom:1px solid var(--border-color);} .main-content{padding:2rem;} .features{grid-template-columns:1fr;} }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <h2>SharpCrypter</h2>
+      <ul>
+        <li><a href="#overview" class="active">Overview</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#demo">Demo & Code</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="creator.html">Developer</a></li>
+        <li><a href="documentation.html">Documentation</a></li>
+        <li><a href="encryptor-online.html">Online Encryptor</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </nav>
+
+    
+    <main class="main-content">
+      <div style="
+    background: linear-gradient(135deg, 
+        rgba(10, 10, 10, 0.95) 0%, 
+        rgba(20, 20, 20, 0.98) 100%
+    );
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    position: relative;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+">
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 215, 0, 0.05) 2px,
+            rgba(255, 215, 0, 0.05) 4px
+        );
+        pointer-events: none;
+        border-radius: 12px;
+    "></div>
+    
+    <div style="display: flex; gap: 1.5rem; align-items: start;">
+     
+
+        <div style="flex: 1;">
+            <h3 style="
+                margin: 0 0 1rem;
+                color: #FFD700;
+                font-size: 1.6rem;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            ">
+                <span style="color: #FF4500;">!</span>
+                Active Development Build
+            </h3>
+
+            <div style="
+                background: rgba(255, 215, 0, 0.05);
+                padding: 1.5rem;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 215, 0, 0.1);
+                margin-bottom: 1.5rem;
+            ">
+                <p style="
+                    margin: 0 0 1rem;
+                    color: rgba(255,255,255,0.9);
+                    line-height: 1.7;
+                    font-size: 1rem;
+                ">
+                    <strong style="color: #FFA500;">Warning:</strong> This preview build contains 
+                    <span style="color: #FF4500; font-weight: 600;">unfinished features</span> 
+                    and experimental components. <br>
+                    <span style="color: #569CD6;">Current implementation status:</span>
+                </p>
+
+
+                <div style="
+                    background: rgba(255, 215, 0, 0.1);
+                    padding: 1rem;
+                    border-radius: 6px;
+                    border-left: 4px solid #FFD700;
+                ">
+                    <p style="margin: 0; color: #FFD700; font-size: 0.95rem;">
+                        <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>
+                        Anticipated completion before 
+                        <strong style="color: #FFF; font-weight: 700;">July 30, 2025</strong>
+                    </p>
+                    <div style="
+                        height: 4px;
+                        background: rgba(255, 215, 0, 0.2);
+                        margin-top: 0.8rem;
+                        border-radius: 2px;
+                    ">
+                        <div style="
+                            width: 72%;
+                            height: 100%;
+                            background: linear-gradient(90deg, #FFD700, #FFA500);
+                            border-radius: 2px;
+                        "></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="
+                background: rgba(255, 69, 0, 0.08);
+                padding: 1rem;
+                border-radius: 6px;
+                border: 1px solid rgba(255, 69, 0, 0.2);
+            ">
+                <p style="
+                    margin: 0;
+                    color: rgba(255,255,255,0.85);
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                ">
+                    <i class="fas fa-bug" style="color: #FF4500; margin-right: 0.5rem;"></i>
+                    <strong>Known Issues:</strong> API non existent • Documentation incomplete • 
+                    Performance optimizations pending • Specific Data Structures and Algorithms pending
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Section -->
+<section id="overview" style="
+    background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+    border-radius: 12px;
+    padding: 4rem 2rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+">
+    <!-- Animated Background Elements -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 215, 0, 0.05) 2px,
+            rgba(255, 215, 0, 0.05) 4px
+        );
+        pointer-events: none;
+    "></div>
+
+    <div style="position: relative; z-index: 1;">
+        <h1 style="
+            color: var(--warning);
+            font-size: 2.5rem;
+            margin: 0 0 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.6s var(--easing);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        ">
+            <i class="fas fa-shield-alt"></i>
+            SharpCrypter CLI v0.0.1
+        </h1>
+        
+        <p style="
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+            animation: fadeInUp 0.6s var(--easing) 0.1s forwards;
+            opacity: 0;
+        ">
+            Encryption toolkit with AES-256/RSA implementation<br>
+            <span style="color: var(--text-secondary); font-size: 0.95rem;">
+                <i class="fa-solid fa-clock-rotate-left"></i> &nbsp;Soon will be in compliance with FIPS 140-2 standards
+            </span>
+        </p>
+
+        <div style="
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 0.6s var(--easing) 0.2s forwards;
+            opacity: 0;
+        ">
+            <button style="
+                background: rgba(255,165,0,0.1);
+                color: var(--accent);
+                border: 1px solid var(--accent);
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                font-size: 1rem;
+                font-weight: 500;
+            " onclick="document.getElementById('download').scrollIntoView({ behavior: 'smooth' })">
+                <i class="fas fa-download"></i>
+                Download Now
+            </button>
+
+            <button style="
+                background: rgba(255,255,255,0.05);
+                color: var(--text-primary);
+                border: 1px solid var(--border-color);
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                font-size: 1rem;
+                font-weight: 500;
+            " onclick="window.open('#features', '_self')">
+                <i class="fas fa-code"></i>
+                View Features
+            </button>
+        </div>
+
+        <!-- Version Badge -->
+        <div style="
+            position: absolute;
+            bottom: -64px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255,165,0,0.2);
+        ">
+            Latest Release: v0.0.1
+        </div>
+    </div>
+</section>
+
+
+<div class="dev-warning">
+  <div class="warning-content">
+      <i class="fas fa-exclamation-triangle warning-icon"></i>
+      <div class="warning-text">
+          <h3 class="warning-title">Development Notice</h3>
+          <p class="warning-description">
+              <span class="highlight">Warning:</span> This site is currently under active development. 
+              Some documentation subdomains may have incomplete functionality or temporary content.
+              <a href="#status" class="warning-link">View development status <i class="fas fa-arrow-right"></i></a>
+          </p>
+      </div>
+  </div>
+</div>
+
+<style>
+.dev-warning {
+  background: linear-gradient(145deg, rgba(255,215,0,0.1), rgba(255,165,0,0.05));
+  border: 2px solid var(--warning);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  position: relative;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.dev-warning::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,215,0,0.05) 10px,
+      rgba(255,215,0,0.05) 20px
+  );
+  pointer-events: none;
+}
+
+.warning-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.warning-icon {
+  color: var(--warning);
+  font-size: 2.2rem;
+  min-width: 40px;
+  text-shadow: 0 0 15px rgba(255,215,0,0.3);
+}
+
+.warning-title {
+  color: var(--warning);
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.5px;
+}
+
+.warning-description {
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.highlight {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+.warning-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.warning-link:hover {
+  color: var(--accent-hover);
+  transform: translateX(5px);
+}
+
+.warning-link i {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .warning-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+  
+  .warning-icon {
+      margin-bottom: 1rem;
+  }
+  
+  .warning-link {
+      margin-top: 1.2rem;
+  }
+}
+
+@keyframes pulseWarning {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.dev-warning {
+  animation: pulseWarning 3s ease-in-out infinite;
+}
+</style>
+
+
+
+<style>
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255,165,0,0.2);
+}
+
+@media (max-width: 768px) {
+    #overview {
+        padding: 2rem 1rem;
+        margin: 1rem;
+    }
+    
+    #overview h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    #overview .button-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #overview button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>
+
+<section class="image-grid-section" style="
+background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+padding: 4rem 2rem;
+border-radius: 12px;
+margin: 3rem auto;
+max-width: 900px;
+border: 1px solid var(--border-color);
+box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+">
+<div class="image-grid-container">
+    <!-- Row 1 -->
+    <div class="grid-row">
+        <div class="grid-item">
+            <img src="pic1.jpg" alt="Project 1">
+            <div class="image-overlay">
+                <h3>Main Function</h3>
+                <p>Entry Point of the Application</p>
+            </div>
+            <div class="corner-tag">New</div>
+        </div>
+        <div class="grid-item">
+            <img src="pic2.jpg" alt="Project 2">
+            <div class="image-overlay">
+                <h3>NoArgsHelper </h3>
+                <p>Helper Method (user-help)</p>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="pic3.jpg" alt="Project 3">
+            <div class="image-overlay">
+                <h3>ParseArguments </h3>
+                <p>Parameter Handling on runtime</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="grid-row">
+        <div class="grid-item">
+            <img src="pic4.jpg" alt="Project 4">
+            <div class="image-overlay">
+                <h3>userHelper Method</h3>
+                <p>User Helper Method</p>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="pic5.jpg" alt="Project 5">
+            <div class="image-overlay">
+                <h3>ValidateFilePath</h3>
+                <p>Code from github</p>
+            </div>
+            <div class="corner-tag">Updated</div>
+        </div>
+        <div class="grid-item">
+            <img src="pic6.jpg" alt="Project 6">
+            <div class="image-overlay">
+                <h3>Main Switch</h3>
+                <p>code from github</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<style>
+.image-grid-section {
+padding: 4rem 2rem;
+background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+}
+
+.image-grid-container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.grid-row {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
+margin-bottom: 2rem;
+}
+
+.grid-item {
+position: relative;
+border-radius: 12px;
+overflow: hidden;
+aspect-ratio: 1;
+transition: var(--transition);
+border: 1px solid var(--border-color);
+transform-origin: center;
+}
+
+.grid-item:hover {
+transform: translateY(-5px) scale(1.02);
+box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+z-index: 1;
+}
+
+.grid-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s var(--easing);
+}
+
+.grid-item:hover img {
+transform: scale(1.05);
+}
+
+.image-overlay {
+position: absolute;
+bottom: -100%;
+left: 0;
+right: 0;
+padding: 1.5rem;
+background: linear-gradient(transparent, rgba(0,0,0,0.95));
+color: white;
+transition: all 0.4s var(--easing);
+backdrop-filter: blur(4px);
+}
+
+.grid-item:hover .image-overlay {
+bottom: 0;
+}
+
+.image-overlay h3 {
+color: var(--warning);
+margin: 0 0 0.5rem;
+font-size: 1.2rem;
+}
+
+.image-overlay p {
+color: var(--text-secondary);
+font-size: 0.9rem;
+margin: 0;
+line-height: 1.4;
+}
+
+.corner-tag {
+position: absolute;
+top: 15px;
+right: 15px;
+background: var(--accent);
+color: var(--bg-dark);
+padding: 0.3rem 0.8rem;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 600;
+box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 1024px) {
+.grid-row {
+    gap: 1.5rem;
+}
+}
+
+@media (max-width: 768px) {
+.image-grid-section {
+    padding: 2rem 1rem;
+    margin: 2rem 1rem;
+}
+
+.grid-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.grid-item {
+    aspect-ratio: 16/9;
+}
+}
+
+@media (max-width: 480px) {
+.image-overlay {
+    padding: 1rem;
+}
+
+.image-overlay h3 {
+    font-size: 1rem;
+}
+
+.image-overlay p {
+    font-size: 0.8rem;
+}
+}
+</style>
+
+
+<br>
+
+<section style="
+    background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin: 2rem auto;
+    max-width: 900px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    font-family: 'Fira Code', monospace;
+    color: var(--text-primary);
+">
+    <!-- Window Header -->
+    <div style="
+        background: var(--bg-light);
+        padding: 0.8rem 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    ">
+        <div style="display: flex; gap: 0.4rem;">
+            <span style="width:12px;height:12px;border-radius:50%;background:#FF5F56;"></span>
+            <span style="width:12px;height:12px;border-radius:50%;background:#FFBD2E;"></span>
+            <span style="width:12px;height:12px;border-radius:50%;background:#27C93F;"></span>
+        </div>
+        <span style="color:var(--text-secondary);font-size:0.9rem;">PROJECT_SPECS.script</span>
+    </div>
+
+    <!-- Code Content -->
+    <div style="padding:2rem 1.5rem;position:relative;">
+        <div style="
+            position:absolute;
+            left:1.5rem;
+            top:2rem;
+            color:var(--text-secondary);
+            text-align:right;
+            font-size:0.9rem;
+            line-height:1.5;
+            user-select:none;
+        ">
+            1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20
+        </div>
+
+        <div style="margin-left:50px;">
+            <!-- Project Header -->
+            <p style="margin:0 0 1.5rem;">
+                <span style="color:var(--accent);">/*</span>
+                <span style="color:var(--text-secondary);"> MAIN CONFIGURATION </span>
+                <span style="color:var(--accent);">*/</span>
+            </p>
+
+            <!-- Project Metadata -->
+            <div style="margin-bottom:2rem;">
+                <p style="margin:0 0 0.8rem;">
+                    <span style="color:var(--warning);">project</span> 
+                    <span style="color:#FFA500;">SharpCrypterCLI</span>
+                    <span style="color:var(--accent);">{</span>
+                </p>
+                <div style="margin-left:2rem;">
+                    <p style="margin:0 0 0.6rem;">
+                        <span style="color:#27C93F;">version</span> 
+                        <span style="color:var(--text-primary);">=</span> 
+                        <span style="color:#FFD700;">"0.0.1-pre"</span>
+                    </p>
+                    <p style="margin:0 0 0.6rem;">
+                        <span style="color:#27C93F;">author</span> 
+                        <span style="color:var(--text-primary);">=</span> 
+                        <span style="color:#FFD700;">"Panagiotis Kotsorgios"</span>
+                    </p>
+                    <p style="margin:0 0 0.6rem;">
+                        <span style="color:#27C93F;">license</span> 
+                        <span style="color:var(--text-primary);">=</span> 
+                        <span style="color:#FFD700;">"MIT-licensed"</span>
+                    </p>
+                </div>
+                <p style="margin:0 0 1.5rem;"><span style="color:var(--accent);">}</span></p>
+            </div>
+
+            <!-- Application Description -->
+            <div style="margin-bottom:2rem;">
+                <p style="margin:0 0 1rem;color:var(--text-secondary);">
+                    <span style="color:var(--accent);">/*</span><br>
+                    <span style="color:#27C93F;"> * SharpCrypterCLI is a professional-grade encryption tool designed for secure  </span><br>
+                    <span style="color:#27C93F;"> * file and data protection. Capable of handling both individual files and  </span><br>
+                    <span style="color:#27C93F;"> * bulk operations, it provides:</span><br>
+                    <span style="color:#27C93F;"> * - AES-256/RSA encryption with automatic key derivation</span><br>
+                    <span style="color:#27C93F;"> * - Secure memory management and modular architecture</span><br>
+                    <span style="color:#27C93F;"> * - Cross-platform compatibility (Linux/Windows)</span><br>
+                    <span style="color:var(--accent);"> */</span>
+                </p>
+            </div>
+
+            <!-- Core Features -->
+            <div style="margin-bottom:2rem;">
+                <p style="margin:0 0 1rem;color:var(--warning);"># CORE FEATURES</p>
+                <div style="margin-left:1.5rem;">
+                    <p style="margin:0 0 0.8rem;">
+                        <span style="color:#FFA500;">+</span> 
+                        <span style="color:var(--text-primary);">AES-256/RSA Encryption</span>
+                        <span style="color:var(--text-secondary);">// NIST-certified algorithm</span>
+                    </p>
+                    <p style="margin:0 0 0.8rem;">
+                        <span style="color:#FFA500;">+</span> 
+                        <span style="color:var(--text-primary);">Secure Key Management</span>
+                       
+                    </p>
+                    <p style="margin:0 0 0.8rem;">
+                        <span style="color:#FFA500;">+</span> 
+                        <span style="color:var(--text-primary);">Memory Protection</span>
+                        <span style="color:var(--text-secondary);">// mlock/munlock implementation</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- CLI Commands -->
+            <div style="margin-bottom:2rem;">
+                <p style="margin:0 0 1rem;color:var(--warning);"># CLI USAGE</p>
+                <div style="
+                    background:var(--bg-dark);
+                    padding:1rem;
+                    border-radius:6px;
+                    border:1px solid var(--border-color);
+                ">
+                    <p style="margin:0 0 0.5rem;color:#27C93F;">
+                        $ sharpcrypter encrypt [file] --output -o --strength 256
+                    </p>
+                    <p style="margin:0 0 0.5rem;color:#27C93F;">
+                        $ sharpcrypter decrypt [.scrypt] --keyfile /path/to/key
+                    </p>
+                    <p style="margin:0;color:#27C93F;">
+                        $ sharpcrypter keygen --length 4096 --export pkcs12
+                    </p>
+                </div>
+            </div>
+
+<!-- Performance & Maintainability Specs -->
+<div style="margin-bottom:2rem;">
+    <p style="margin:0 0 1rem;color:var(--primary);"># PERFORMANCE & MAINTAINABILITY</p>
+    <div style="margin-left:1.5rem;">
+        <p style="margin:0 0 0.8rem;color:#1E90FF;">
+            ✓ EFFICIENT MEMORY MANAGEMENT
+            <span style="color:var(--text-secondary);">// Minimized GC overhead</span>
+        </p>
+        <p style="margin:0 0 0.8rem;color:#1E90FF;">
+            ✓ CLEAN AND READABLE CODE
+            <span style="color:var(--text-secondary);">// Consistent naming & formatting</span>
+        </p>
+        <p style="margin:0;color:#1E90FF;">
+            ✓ MODULAR DESIGN
+            <span style="color:var(--text-secondary);">// Easy to extend & test</span>
+        </p>
+    </div>
+</div>
+
+
+            <!-- Roadmap -->
+            <div>
+                <p style="margin:0 0 1rem;color:var(--warning);"># DEVELOPMENT ROADMAP</p>
+                <div style="
+                    background:rgba(255,165,0,0.05);
+                    padding:1rem;
+                    border-radius:6px;
+                    border:1px solid var(--border-color);
+                ">
+                    <p style="margin:0 0 0.5rem;">
+                        <span style="color:#FFD700;">[Q3 2024]</span> 
+                        v2.2.0 - Network encryption modules
+                    </p>
+                    <p style="margin:0 0 0.5rem;">
+                        <span style="color:#FFD700;">[Q4 2024]</span> 
+                        v3.0.0 - GUI frontend integration
+                    </p>
+                    <p style="margin:0;">
+                        <span style="color:#FFD700;">[Q1 2025]</span> 
+                        Mobile SDK development
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bar -->
+    <div style="
+        background:var(--bg-light);
+        padding:0.8rem 1.5rem;
+        border-top:1px solid var(--border-color);
+        color:var(--text-secondary);
+        font-size:0.9rem;
+        display:flex;
+        justify-content:space-between;
+    ">
+        <span>UTF-8 | Unix Line Endings | Rust 1.72</span>
+        <span>Ln 20, Col 82</span>
+    </div>
+</section>
+
+<br>
+
+      <!-- Features Section -->
+      <section id="features" class="section">
+        <h2>Key Features</h2>
+        <div class="features">
+          <div class="feature-card">
+            <h3>AES & RSA Support</h3>
+            <p>Encrypt and decrypt files using industry-standard AES and RSA algorithms.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Easy-to-Use UI</h3>
+            <p>Intuitive interface for both novice and advanced users.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Secure Key Management</h3>
+            <p>Generate and store keys securely within the application.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Fast Performance</h3>
+            <p>Optimized for rapid encryption/decryption of large files.</p>
+          </div>
+        </div>
+      </section>
+<!-- Demo & Code Section -->
+<section id="demo" style="
+    background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 3rem auto;
+    max-width: 900px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+">
+
+    <!-- Video Section Header -->
+    <div style="margin-bottom: 2rem; text-align: center;">
+        <h2 style="
+            color: var(--warning);
+            margin: 0 0 1rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        ">
+            <i class="fas fa-video" style="font-size: 1.4rem;"></i>
+            Live Demonstration
+        </h2>
+        <p style="color: var(--text-secondary); margin: 0;">
+            Walkthrough of core features and implementation details
+        </p>
+    </div>
+
+    <!-- Video Container -->
+    <div style="margin-bottom: 3rem; position: relative;">
+        <!-- Video Badge -->
+        <div style="
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        ">
+            <i class="fas fa-play-circle"></i>
+            Runtime: 4:15
+        </div>
+
+        <!-- Responsive Video Embed -->
+        <div style="
+            position: relative;
+            padding-bottom: 56.25%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+        ">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border: none;
+                "
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="lazy"
+            ></iframe>
+        </div>
+
+        <!-- Video Content Description -->
+        <div style="
+            background: var(--bg-light);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        ">
+            <h3 style="
+                color: var(--warning);
+                margin: 0 0 1rem;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+            ">
+                <i class="fas fa-list-ol"></i>
+                Video Contents
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                <div style="
+                    padding: 0.8rem;
+                    background: rgba(255,165,0,0.05);
+                    border-radius: 6px;
+                    border: 1px solid var(--border-color);
+                ">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-download" style="color: var(--accent);"></i>
+                        <span style="font-weight: 600; color: var(--text-primary);">Installation</span>
+                    </div>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4;">
+                        Step-by-step setup guide for Windows/Linux
+                    </p>
+                </div>
+
+                <div style="
+                    padding: 0.8rem;
+                    background: rgba(255,165,0,0.05);
+                    border-radius: 6px;
+                    border: 1px solid var(--border-color);
+                ">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lock" style="color: var(--accent);"></i>
+                        <span style="font-weight: 600; color: var(--text-primary);">Encryption</span>
+                    </div>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4;">
+                        File encryption process with key generation
+                    </p>
+                </div>
+
+                <div style="
+                    padding: 0.8rem;
+                    background: rgba(255,165,0,0.05);
+                    border-radius: 6px;
+                    border: 1px solid var(--border-color);
+                ">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-shield-alt" style="color: var(--accent);"></i>
+                        <span style="font-weight: 600; color: var(--text-primary);">Security</span>
+                    </div>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4;">
+                        Memory protection and secure deletion
+                    </p>
+                </div>
+
+                <div style="
+                    padding: 0.8rem;
+                    background: rgba(255,165,0,0.05);
+                    border-radius: 6px;
+                    border: 1px solid var(--border-color);
+                ">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-code-branch" style="color: var(--accent);"></i>
+                        <span style="font-weight: 600; color: var(--text-primary);">Advanced</span>
+                    </div>
+                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4;">
+                        Batch processing and CLI automation
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Enhanced Code Snippet -->
+<div style="
+background: var(--bg-light);
+border-radius: 8px;
+border: 1px solid var(--border-color);
+position: relative;
+font-family: 'Fira Code', monospace;
+margin-bottom: 2rem;
+">
+<div style="
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+">
+    <div style="display: flex; align-items: center; gap: 0.8rem;">
+        <i class="fas fa-file-code" style="color: var(--text-secondary);"></i>
+        <span style="color: var(--text-secondary); font-size: 0.9rem;">
+            CaesarEncryption.cs
+        </span>
+    </div>
+    <button style="
+        background: rgba(255,165,0,0.1);
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        padding: 0.4rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    ">
+        <i class="far fa-copy"></i>
+        Copy Code
+    </button>
+</div>
+
+<pre style="
+    margin: 0;
+    padding: 1.5rem;
+    overflow-x: auto;
+    line-height: 1.5;
+    background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+"><code style="display: block; color: var(--text-primary);">
+<span style="color: #569CD6;">using</span> System;
+<span style="color: #569CD6;">using</span> System.IO;
+
+<span style="color: #569CD6;">public static class</span> <span style="color: #4EC9B0;">FileEncryptor</span>
+{
+<span style="color: #57A64A;">// Reads a file, applies a Caesar cipher, and writes output</span>
+<span style="color: #569CD6;">public static string</span> <span style="color: #4EC9B0;">CaesarEncryption</span>(<span style="color: #4EC9B0;">string</span> filePath, <span style="color: #4EC9B0;">int</span> shift, <span style="color: #4EC9B0;">string</span> outputFileName, <span style="color: #4EC9B0;">bool</span> overwrite)
+{
+    <span style="color: #569CD6;">try</span>
+    {
+        <span style="color: #57A64A;">// read whole file as text</span>
+        <span style="color: #4EC9B0;">string</span> fileData = File.ReadAllText(filePath);
+        Console.WriteLine(<span style="color: #CE9178;">$"[+] File content to encrypt: {fileData}"</span>);
+
+        <span style="color: #57A64A;">// do the actual Caesar cipher encryption</span>
+        <span style="color: #4EC9B0;">string</span> encryptedData = <span style="color: #4EC9B0;">CaesarCipher</span>(fileData, shift);
+        Console.WriteLine(<span style="color: #CE9178;">$"[+] Encrypted content: {encryptedData}"</span>);
+
+        <span style="color: #57A64A;">// if no output name given, use original name + .enc</span>
+        <span style="color: #569CD6;">if</span> (<span style="color: #569CD6;">string</span>.IsNullOrEmpty(outputFileName))
+        {
+            outputFileName = Path.GetFileNameWithoutExtension(filePath) + <span style="color: #CE9178;">".enc"</span>;
+        }
+
+        <span style="color: #57A64A;">// if file exists and no overwrite, bail out</span>
+        <span style="color: #569CD6;">if</span> (File.Exists(outputFileName) <span style="color: #569CD6;">&&</span> !overwrite)
+        {
+            Console.WriteLine(<span style="color: #CE9178;">"[!] File exists and overwrite not enabled."</span>);
+            <span style="color: #569CD6;">return null</span>;
+        }
+
+        <span style="color: #57A64A;">// write encrypted data to file</span>
+        File.WriteAllText(outputFileName, encryptedData);
+
+        <span style="color: #57A64A;">// report success</span>
+        Console.WriteLine(<span style="color: #CE9178;">$"[+] Encrypted file saved to: {outputFileName}"</span>);
+        <span style="color: #569CD6;">return</span> outputFileName;
+    }
+    <span style="color: #569CD6;">catch</span> (<span style="color: #4EC9B0;">Exception</span> ex)
+    {
+        <span style="color: #57A64A;">// catch-all encryption error</span>
+        Console.WriteLine(<span style="color: #CE9178;">$"Error during encryption: {ex.Message}"</span>);
+        <span style="color: #569CD6;">return null</span>;
+    }
+}
+
+<span style="color: #57A64A;">// core Caesar cipher algorithm</span>
+<span style="color: #569CD6;">private static string</span> <span style="color: #4EC9B0;">CaesarCipher</span>(<span style="color: #4EC9B0;">string</span> input, <span style="color: #4EC9B0;">int</span> shift)
+{
+    <span style="color: #569CD6;">char</span>[] buffer = input.ToCharArray();
+    <span style="color: #569CD6;">for</span> (<span style="color: #569CD6;">int</span> i = <span style="color: #B5CEA8;">0</span>; i &lt; buffer.Length; i++)
+    {
+        <span style="color: #569CD6;">char</span> letter = buffer[i];
+        <span style="color: #569CD6;">if</span> (char.IsLetter(letter))
+        {
+            <span style="color: #569CD6;">char</span> offset = char.IsUpper(letter) ? <span style="color: #CE9178;">'A'</span> : <span style="color: #CE9178;">'a'</span>;
+            buffer[i] = (char)(((letter + shift - offset) % <span style="color: #B5CEA8;">26</span> + offset));
+        }
+    }
+    <span style="color: #569CD6;">return</span> <span style="color: #4EC9B0;">new string</span>(buffer);
+}
+}
+</code></pre>
+</div>
+
+
+    <!-- Section Footer -->
+    <div style="
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+        margin-top: 2rem;
+    ">
+        <p style="margin: 0 0 0.5rem;">
+            Need help? <a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter" style="color: var(--accent); text-decoration: none;">Contact support</a>
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+            <a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter" style="color: var(--text-secondary); text-decoration: none;">
+                <i class="fab fa-github"></i> View Source
+            </a>
+            <a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter/tree/main/docs/markdown" style="color: var(--text-secondary); text-decoration: none;">
+                <i class="fas fa-book"></i> Documentation
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Responsive Design */
+@media (max-width: 768px) {
+    #demo {
+        padding: 1.5rem;
+        margin: 2rem 1rem;
+    }
+    
+    .video-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .code-header button {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    pre code {
+        font-size: 0.9rem;
+        padding: 1rem;
+    }
+}
+
+/* Interactive Elements */
+button:hover {
+    background: rgba(255,165,0,0.2) !important;
+    transform: translateY(-1px);
+}
+
+a:hover {
+    color: var(--accent-hover) !important;
+}
+</style>
+<!-- Download Section -->
+<section id="download" style="
+    background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 3rem auto;
+    max-width: 900px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+">
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="
+            color: var(--warning);
+            margin: 0 0 1rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        ">
+            <i class="fas fa-download"></i>
+            Download Options
+        </h2>
+        <p style="color: var(--text-secondary); margin: 0;">
+            Choose your preferred download method
+        </p>
+    </div>
+
+    <div style="
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+    ">
+        <!-- GitHub Releases Option -->
+        <div style="
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        ">
+            <div style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            ">
+                <i class="fab fa-github" style="
+                    color: var(--accent);
+                    font-size: 1.8rem;
+                "></i>
+                <h3 style="margin: 0; color: var(--text-primary);">
+                    GitHub Releases
+                </h3>
+            </div>
+            <div style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                <p style="margin: 0 0 1rem; font-size: 0.95rem;">
+                    Recommended for developers and technical users:
+                </p>
+                <ul style="
+                    margin: 0;
+                    padding-left: 1.5rem;
+                    font-size: 0.9rem;
+                    line-height: 1.6;
+                ">
+                    <li>Access to all historical versions</li>
+                    <li>Verify checksums and signatures</li>
+                    <li>View release notes and changelog</li>
+                </ul>
+            </div>
+            <button style="
+                width: 100%;
+                background: rgba(255,165,0,0.1);
+                color: var(--accent);
+                border: 1px solid var(--accent);
+                padding: 0.8rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.6rem;
+            " onclick="window.open('https://github.com/PanagiotisKotsorgios/Sharp-Crypter/releases')">
+                <i class="fas fa-external-link-alt"></i>
+                Browse Releases
+            </button>
+        </div>
+
+        <!-- Direct Download Option -->
+        <div style="
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        ">
+            <div style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            ">
+                <i class="fas fa-box" style="
+                    color: var(--accent);
+                    font-size: 1.8rem;
+                "></i>
+                <h3 style="margin: 0; color: var(--text-primary);">
+                    Direct Download
+                </h3>
+            </div>
+            <div style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                <p style="margin: 0 0 1rem; font-size: 0.95rem;">
+                    Simplified download for end-users:
+                </p>
+                <ul style="
+                    margin: 0;
+                    padding-left: 1.5rem;
+                    font-size: 0.9rem;
+                    line-height: 1.6;
+                ">
+                    <li>Latest stable version only</li>
+                    <li>Automatic platform detection</li>
+                    <li>Simplified installation process</li>
+                </ul>
+            </div>
+            <button style="
+                width: 100%;
+                background: rgba(255,165,0,0.1);
+                color: var(--accent);
+                border: 1px solid var(--accent);
+                padding: 0.8rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.6rem;
+            " onclick="window.location.href='https://github.com/PanagiotisKotsorgios/Sharp-Crypter/archive/refs/tags/v0.0.1.zip'">
+                <i class="fas fa-download"></i>
+                Download Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Security Note -->
+    <div style="
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+    ">
+        <p style="margin: 0;">
+            <i class="fas fa-shield-alt"></i>
+            All downloads include SHA-256 checksums and PGP signatures. <span style="color: red;"> &nbsp;&nbsp; | &nbsp;&nbsp;Just Joking😂</span>
+        </p>
+    </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+    #download > div:first-child {
+        grid-template-columns: 1fr;
+    }
+    
+    #download {
+        padding: 1.5rem;
+        margin: 2rem 1rem;
+    }
+}
+
+button:hover {
+    background: rgba(255,165,0,0.2) !important;
+    transform: translateY(-2px);
+}
+</style>
+<!-- FAQ Section -->
+<section id="faq" style="
+    background: linear-gradient(145deg, rgba(17, 17, 17, 0.95), rgba(10, 10, 10, 0.98));
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 3rem auto;
+    max-width: 900px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+        <h2 style="
+            color: var(--warning);
+            margin: 0 0 1rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        ">
+            <i class="fas fa-question-circle"></i>
+            Frequently Asked Questions
+        </h2>
+        <p style="color: var(--text-secondary); margin: 0;">
+            Quick answers to get you started
+        </p>
+    </div>
+
+    <div style="display: grid; gap: 1rem;">
+        <!-- FAQ Item: Supported Languages -->
+        <div style="
+            background: var(--bg-light);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        ">
+            <div style="
+                padding: 1.25rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            " onclick="toggleFAQ(this)">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-code" style="color: var(--accent);"></i>
+                    <h4 style="
+                        margin: 0;
+                        color: var(--text-primary);
+                        font-size: 1.1rem;
+                        transition: var(--transition);
+                    ">What programming language is this built with?</h4>
+                </div>
+                <i class="fas fa-chevron-down" style="
+                    color: var(--text-secondary);
+                    transition: var(--transition);
+                "></i>
+            </div>
+            <div style="
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.3s var(--easing);
+                padding: 0 1.25rem;
+            ">
+                <p style="
+                    margin: 0;
+                    padding: 0 0 1.25rem;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                ">The core engine and CLI are written in C#, targeting .NET > 6.0 for cross-platform compatibility.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item: Basic Usage -->
+        <div style="
+            background: var(--bg-light);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        ">
+            <div style="
+                padding: 1.25rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            " onclick="toggleFAQ(this)">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-play-circle" style="color: var(--accent);"></i>
+                    <h4 style="
+                        margin: 0;
+                        color: var(--text-primary);
+                        font-size: 1.1rem;
+                        transition: var(--transition);
+                    ">How do I start the application?</h4>
+                </div>
+                <i class="fas fa-chevron-down" style="
+                    color: var(--text-secondary);
+                    transition: var(--transition);
+                "></i>
+            </div>
+            <div style="
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.3s var(--easing);
+                padding: 0 1.25rem;
+            ">
+                <p style="
+                    margin: 0;
+                    padding: 0 0 1.25rem;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                ">Open your terminal, navigate to the installation folder, and run <code>dotnet MyApp.dll</code> or use the provided executable file.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item: Configuration -->
+        <div style="
+            background: var(--bg-light);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        ">
+            <div style="
+                padding: 1.25rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            " onclick="toggleFAQ(this)">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-cogs" style="color: var(--accent);"></i>
+                    <h4 style="
+                        margin: 0;
+                        color: var(--text-primary);
+                        font-size: 1.1rem;
+                        transition: var(--transition);
+                    ">Where can I change settings?</h4>
+                </div>
+                <i class="fas fa-chevron-down" style="
+                    color: var(--text-secondary);
+                    transition: var(--transition);
+                "></i>
+            </div>
+            <div style="
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.3s var(--easing);
+                padding: 0 1.25rem;
+            ">
+                <p style="
+                    margin: 0;
+                    padding: 0 0 1.25rem;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                ">Not Current support for this feature. <span style="color: red;"> Please be patient😊</span></p>
+            </div>
+        </div>
+
+        <!-- FAQ Item: Extension & Plugins -->
+        <div style="
+            background: var(--bg-light);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        ">
+            <div style="
+                padding: 1.25rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            " onclick="toggleFAQ(this)">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-plug" style="color: var(--accent);"></i>
+                    <h4 style="
+                        margin: 0;
+                        color: var(--text-primary);
+                        font-size: 1.1rem;
+                        transition: var(--transition);
+                    ">Can I extend with plugins?</h4>
+                </div>
+                <i class="fas fa-chevron-down" style="
+                    color: var(--text-secondary);
+                    transition: var(--transition);
+                "></i>
+            </div>
+            <div style="
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.3s var(--easing);
+                padding: 0 1.25rem;
+            ">
+                <p style="
+                    margin: 0;
+                    padding: 0 0 1.25rem;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                ">⚠️ This feature is on a coffee break—be right back! ☕
+</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item: Support -->
+        <div style="
+            background: var(--bg-light);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        ">
+            <div style="
+                padding: 1.25rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            " onclick="toggleFAQ(this)">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-life-ring" style="color: var(--accent);"></i>
+                    <h4 style="
+                        margin: 0;
+                        color: var(--text-primary);
+                        font-size: 1.1rem;
+                        transition: var(--transition);
+                    ">Where can I get help?</h4>
+                </div>
+                <i class="fas fa-chevron-down" style="
+                    color: var(--text-secondary);
+                    transition: var(--transition);
+                "></i>
+            </div>
+            <div style="
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.3s var(--easing);
+                padding: 0 1.25rem;
+            ">
+                <p style="
+                    margin: 0;
+                    padding: 0 0 1.25rem;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                ">Visit the GitHub page or file an issue on the repo. For urgent matters, email pkotsorgios654@gmail.com.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+function toggleFAQ(element) {
+    const parent = element.parentElement;
+    const answer = element.nextElementSibling;
+    const chevron = element.querySelector('i.fa-chevron-down');
+
+    parent.classList.toggle('active');
+    chevron.style.transform = parent.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+    
+    if (parent.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+    } else {
+        answer.style.maxHeight = '0';
+    }
+}
+
+// Add keyboard accessibility
+document.querySelectorAll('[onclick="toggleFAQ(this)"]').forEach(item => {
+    item.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') toggleFAQ(item);
+    });
+});
+</script>
+
+<style>
+@media (max-width: 768px) {
+    #faq {
+        padding: 1.5rem;
+        margin: 2rem 1rem;
+    }
+    
+    .faq h4 {
+        font-size: 1rem;
+    }
+}
+
+.faq-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.faq-item.active {
+    border-color: var(--warning);
+}
+
+[onclick="toggleFAQ(this)"]:hover h4 {
+    color: var(--accent);
+}
+
+[onclick="toggleFAQ(this)"]:hover i:not(.fa-chevron-down) {
+    color: var(--warning);
+}
+
+[onclick="toggleFAQ(this)"]:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+</style>
+   
+    </main>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-container">
+        <!-- Branding Section -->
+        <div class="footer-brand">
+            <h3 class="footer-logo">SharpCrypter</h3>
+            <p class="footer-tagline">Secure File Encryption Application</p>
+            <div class="footer-social">
+                <a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter" target="_blank" aria-label="GitHub" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/panagiotis-kotsorgios-019ab9303/" target="_blank" aria-label="LinkedIn" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:pkotsorgios654@gmail.com" aria-label="Email" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer Sections Grid -->
+        <div class="footer-grid">
+            <!-- Resources -->
+            <div class="footer-section">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="documentation.html">Web Documentation</a></li>
+                    <li><a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter/tree/main/docs/markdown">GitHub Documentation</a></li>
+                    <li><a href="encryptor-online.html">API Documentation</a></li>
+                    <li><a href="https://github.com/PanagiotisKotsorgios/Sharp-Crypter/tree/main/SharpCrypterCLI/SharpCrypterCLI">Source Code</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal -->
+            <div class="footer-section">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="licensing.html">Project Licensing</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-section">
+                <h4 class="footer-heading">Connect</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Athens, GR</li>
+                    <li><i class="fas fa-envelope"></i> pkotsorgios654@gmail.com</li>
+                    <li><i class="fas fa-shield-alt"></i> PGP Key: 0x8F3A2B1C <span style="color: #FF8C00;">[ Visual Only ]</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright & Attribution -->
+        <div class="footer-bottom">
+            <div class="made-with">
+                <span>Engineered with <i class="fas fa-heart pulse"></i> by Panagiotis Kotsorgios using</span>
+                <div class="tech-stack">
+                    <i class="fab fa-linux" title="Linux"></i>
+                    <i class="fas fa-terminal" title="CLI"></i>
+                    <i class="fas fa-microchip" title="Embedded"></i>
+                    <i class="fas fa-shield-halved" title="Security"></i>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2025 Panagiotis Kotsorgios. All rights reserved.<br>
+                
+                
+                <div class="end-line">
+                    <hr>
+
+                </div>
+<style>
+    .end-line hr{
+
+       
+        color: #FFA500;
+        background-color: #FFA500;
+        border: 1px solid #FFA500;
+        width: 50px;
+        height: 1px;
+        
+    }
+</style>
+
+            <small>v0.0.1 | SHA-256: 9a3f...d41c</small></p>
+        </div>
+    </div>
+</footer>
+
+<style>/* Updated Footer Styles */
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 20px;
+    unicode-bidi: isolate;
+}
+
+ul.footer-contact {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 0px;
+    unicode-bidi: isolate;
+}
+
+.site-footer {
+    background: var(--bg-light);
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border-color);
+    position: relative;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer-brand {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.footer-logo {
+    color: var(--warning);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.footer-tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-section {
+    padding: 1rem;
+}
+
+.footer-heading {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+    list-style: lower-roman;
+    padding: 0; /* Remove or adjust this value */
+    color: #FFA500;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    display: inline-block;
+    padding: 0px 0;
+}
+
+.footer-links a:hover {
+    color: var(--warning);
+    transform: translateX(5px);
+}
+
+.footer-contact li {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.footer-contact i {
+    color: var(--accent);
+    width: 20px;
+    text-align: center;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--accent-hover);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.made-with {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.tech-stack {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.tech-stack i {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.tech-stack i:hover {
+    color: var(--accent);
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.pulse {
+    color: var(--warning);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .footer-heading::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-contact li {
+        justify-content: center;
+    }
+
+    .footer-links a:hover {
+        transform: none;
+    }
+}
+
+</style>
+
+
+<!-- Add this modal HTML -->
+<div id="devStatusModal" class="status-modal">
+  <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3 class="modal-title"><i class="fas fa-tasks"></i> Development Progress</h3>
+      
+      <div class="loader-container">
+          <svg class="circle-loader" viewBox="0 0 100 100">
+              <circle class="loader-bg" cx="50" cy="50" r="45"></circle>
+              <circle class="loader-progress" cx="50" cy="50" r="45"></circle>
+              <text class="percentage" x="50" y="55" text-anchor="middle">0%</text>
+          </svg>
+      </div>
+
+      <div class="status-messages">
+          <div class="status-item completed">
+              <i class="fas fa-check-circle"></i>
+              Core Functionality - 100%
+          </div>
+          <div class="status-item in-progress">
+              <i class="fas fa-tools"></i>
+              Documentation - 65%
+          </div>
+          <div class="status-item pending">
+              <i class="fas fa-pause-circle"></i>
+              API Integration - 30%
+          </div>
+      </div>
+  </div>
+</div>
+
+<style>
+/* Modal Styles */
+.status-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #0f172a;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #818cf8;
+}
+
+.modal-title {
+  color: #818cf8;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Loader Styles */
+.loader-container {
+  position: relative;
+  width: 200px;
+  margin: 0 auto 2rem;
+}
+
+.circle-loader {
+  width: 100%;
+  height: 100%;
+  transform: rotate(0deg);
+}
+
+.loader-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.1);
+  stroke-width: 8;
+}
+
+.loader-progress {
+  fill: none;
+  stroke: #818cf8;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: progress 2s ease-out forwards;
+}
+
+.percentage {
+  fill: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: bold;
+  dominant-baseline: middle;
+}
+
+@keyframes progress {
+  from { stroke-dashoffset: 283; }
+  to { stroke-dashoffset: 100; }
+}
+
+/* Status Messages */
+.status-messages {
+  display: grid;
+  gap: 1rem;
+}
+
+.status-item {
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(255,255,255,0.03);
+}
+
+.status-item i {
+  font-size: 1.2rem;
+}
+
+.completed { color: #4ade80; border-left: 4px solid #4ade80; }
+.in-progress { color: #818cf8; border-left: 4px solid #818cf8; }
+.pending { color: #94a3b8; border-left: 4px solid #94a3b8; }
+</style>
+
+<script>
+document.querySelector('.warning-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  showStatusModal();
+});
+
+document.querySelector('.close-modal').addEventListener('click', closeModal);
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  if (event.target.classList.contains('status-modal')) {
+      closeModal();
+  }
+}
+
+function showStatusModal() {
+  const modal = document.getElementById('devStatusModal');
+  modal.style.display = 'flex';
+  
+  // Animate percentage counter
+  let current = 0;
+  const target = 65;
+  const percentageElement = document.querySelector('.percentage');
+  
+  const interval = setInterval(() => {
+      current++;
+      percentageElement.textContent = current + "%";
+      if(current >= target) clearInterval(interval);
+  }, 30);
+}
+
+function closeModal() {
+  document.getElementById('devStatusModal').style.display = 'none';
+}
+</script>
+
+</body>
+</html>

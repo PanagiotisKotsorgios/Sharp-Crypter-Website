@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Sharp Crypter</title>
+    <style>
+    /* Inherited CSS Variables */
+    :root {
+        --bg-dark: #0a0a0a;
+        --bg-light: #111111;
+        --accent: #FFA500;
+        --accent-hover: #FF8C00;
+        --warning: #FFD700;
+        --text-primary: #f0f0f0;
+        --text-secondary: #888;
+        --border-color: #3d3d3d;
+        --scrollbar: #1a1a1a;
+        --scrollbar-thumb: #FFA50099;
+        --easing: cubic-bezier(0.4, 0, 0.2, 1);
+        --transition: all 0.3s var(--easing);
+    }
+
+    /* Consistent Base Styles */
+    body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        line-height: 1.65;
+    }
+
+    .container {
+        display: flex;
+        min-height: 100vh;
+        opacity: 0;
+        animation: fadeIn 0.6s var(--easing) forwards;
+    }
+
+    .main-content {
+        flex: 1;
+        padding: 3rem 5rem;
+        max-width: 900px;
+    }
+
+    /* Privacy Policy Specific Styles */
+    .policy-header {
+        background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+        padding: 3rem;
+        border-radius: 16px;
+        margin-bottom: 3rem;
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
+
+    .policy-header h1 {
+        font-size: 2.8rem;
+        margin: 0 0 0.5rem 0;
+        background: linear-gradient(45deg, var(--warning), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .policy-section {
+        background: var(--bg-light);
+        padding: 2.5rem;
+        margin: 2rem 0;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+    }
+
+    .policy-section h2 {
+        color: var(--warning);
+        font-size: 1.8rem;
+        margin-top: 0;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border-color);
+        position: relative;
+    }
+
+    .policy-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: var(--accent);
+    }
+
+    .data-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+
+    .data-list li {
+        padding: 1rem;
+        margin: 0.5rem 0;
+        background: rgba(255,255,255,0.02);
+        border-left: 3px solid var(--accent);
+        border-radius: 4px;
+    }
+
+    .highlight {
+        color: var(--warning);
+        font-weight: 500;
+    }
+
+    .security-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: rgba(255,215,0,0.1);
+        border: 1px solid var(--warning);
+        border-radius: 20px;
+        margin: 1rem 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .main-content {
+            padding: 2rem;
+        }
+
+        .policy-header {
+            padding: 2rem;
+        }
+
+        .policy-section {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Existing Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main class="main-content">
+            <header class="policy-header">
+                <h1>Privacy Policy</h1>
+                <p>Effective: [2025] · Last Updated: [2025]</p>
+            </header>
+
+            <section class="policy-section">
+                <h2>1. Data Collection</h2>
+                <p>Sharp Crypter is designed with a fundamental privacy principle:</p>
+                <ul class="data-list">
+                    <li>We <span class="highlight">do not collect</span> personal information</li>
+                    <li>No usage analytics or tracking</li>
+                    <li>Zero data transmission from the application</li>
+                </ul>
+            </section>
+
+            <section class="policy-section">
+                <h2>2. Local Processing</h2>
+                <p>All cryptographic operations occur locally on your device:</p>
+                <ul class="data-list">
+                    <li>Encryption/decryption keys never leave your machine</li>
+                    <li>Files processed in temporary memory only</li>
+                    <li>No cloud storage or transmission of processed data</li>
+                </ul>
+                <div class="security-badge">
+                    🔐 Client-Side Execution Only
+                </div>
+            </section>
+
+            <section class="policy-section">
+                <h2>3. Third-Party Services</h2>
+                <p>The Software interacts with external services only when:</p>
+                <ul class="data-list">
+                    <li>Checking for updates (optional, disabled by default)</li>
+                    <li>Downloading dependencies during installation</li>
+                    <li>Voluntary error reporting (explicit user consent required)</li>
+                </ul>
+            </section>
+
+            <section class="policy-section">
+                <h2>4. Security Measures</h2>
+                <p>While we implement robust security practices:</p>
+                <ul class="data-list">
+                    <li>Memory is wiped after operations</li>
+                    <li>Sensitive data never persists to disk</li>
+                    <li>Regular security audits of codebase</li>
+                </ul>
+                <p class="highlight">Note: Ultimate security depends on your execution environment</p>
+            </section>
+
+            <section class="policy-section">
+                <h2>5. User Responsibilities</h2>
+                <p>You agree to:</p>
+                <ul class="data-list">
+                    <li>Secure your encryption keys</li>
+                    <li>Maintain environment security</li>
+                    <li>Assume responsibility for data backups</li>
+                </ul>
+            </section>
+
+            <footer class="version-date">
+                <p>This policy applies to all versions of Sharp Crypter</p>
+                <p>For privacy concerns, open an issue on our GitHub repository</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
